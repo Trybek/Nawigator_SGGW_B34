@@ -2,9 +2,12 @@
 using Nawigator_SGGW_B34.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace Nawigator_SGGW_B34
@@ -15,6 +18,7 @@ namespace Nawigator_SGGW_B34
         private ISQLite databaseHelper;
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private int index;
 
         public NotesPage()
         {
@@ -71,6 +75,25 @@ namespace Nawigator_SGGW_B34
             {
                 item.FontSize = App.FontSize;
             }
+            foreach (var item in gridEdit.Children)
+            {
+                if (item is TextBlock)
+                {
+                    (item as TextBlock).FontSize = App.FontSize;
+                }
+                else if (item is TextBox)
+                {
+                    (item as TextBox).FontSize = App.FontSize;
+                }
+                else if (item is ComboBox)
+                {
+                    (item as ComboBox).FontSize = App.FontSize;
+                }
+                else if (item is Button)
+                {
+                    (item as Button).FontSize = App.FontSize;
+                }
+            }
         }
 
         #region Default Methods or Variables
@@ -104,11 +127,20 @@ namespace Nawigator_SGGW_B34
 
         private void MakeList()
         {
-            foreach (var item in ContentRoot.Children)
+            comboBox1.Items.Clear();
+            comboBoxEdit1.Items.Clear();
+            List<Room> listOfRooms = databaseHelper.ReadRooms();
+            foreach (var item in listOfRooms)
             {
-                if (item is TextBlock)
+                comboBox1.Items.Add(new ComboBoxItem() { Name = item.ID.ToString(), Content = item.Name });
+                comboBoxEdit1.Items.Add(new ComboBoxItem() { Name = item.ID.ToString(), Content = item.Name });
+            }
+
+            for (int i = ContentRoot.Children.Count - 1; i >= 0; i--)
+            {
+                if (ContentRoot.Children[i] is TextBlock)
                 {
-                    ContentRoot.Children.Remove(item as TextBlock);
+                    ContentRoot.Children.Remove(ContentRoot.Children[i] as TextBlock);
                 }
             }
 
@@ -134,32 +166,20 @@ namespace Nawigator_SGGW_B34
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
             GridAddNote.Visibility = Visibility.Visible;
-            if (comboBox1.Items.Count == 0)
-            {
-                List<Room> listOfRooms = databaseHelper.ReadRooms();
-                foreach (var item in listOfRooms)
-                {
-                    comboBox1.Items.Add(new ComboBoxItem() { Name = item.ID.ToString(), Content = item.Name });
-                }
-            }
             if (!string.IsNullOrEmpty(textBox.Text))
             {
                 textBox.Text = string.Empty;
-            }
-            if (comboBox.SelectedIndex != -1)
-            {
-                comboBox.SelectedIndex = -1;
             }
         }
         private void b3_Click(object sender, RoutedEventArgs e)
         {
             if (comboBox1.SelectedItem != null && string.IsNullOrEmpty((comboBox1.SelectedItem as ComboBoxItem).Name))
             {
-                notifications.ShowMessage(databaseHelper.FindRoomByID((comboBox1.SelectedItem as ComboBoxItem).Name));
+                notifications.ShowMessage(databaseHelper.FindRoomByID(int.Parse((comboBox1.SelectedItem as ComboBoxItem).Name)));
             }
             else
             {
-                notifications.ShowMessage(databaseHelper.FindRoomByID("1"));
+                notifications.ShowMessage(databaseHelper.FindRoomByID(1));
             }
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -179,7 +199,7 @@ namespace Nawigator_SGGW_B34
             };
             text.Tapped += Text_Tapped;
             ContentRoot.Children.Insert(0, text);
-            notifications.AddNotification(databaseHelper.FindRoomByID(note.RoomID.ToString()), DateTime.Parse(note.TimeOfNote));
+            notifications.AddNotification(databaseHelper.FindRoomByID(note.RoomID), DateTime.Parse(note.TimeOfNote));
             GridAddNote.Visibility = Visibility.Collapsed;
         }
 
@@ -192,33 +212,55 @@ namespace Nawigator_SGGW_B34
                 item.Name = i + element.Name;
                 i++;
             }
+            index = int.Parse((sender as TextBlock).Name.Remove(0, 4));
             menu.ShowAt(element);
         }
         private void MenuFlyoutDelete_Click(object sender, RoutedEventArgs e)
         {
-            MenuFlyoutItem items = (MenuFlyoutItem)sender;
-            string test = (sender as MenuFlyoutItem).Name;
-            int index = int.Parse(test.Remove(0, 5));
             databaseHelper.DeleteNote(index);
             MakeList();
         }
         private void MenuFlyoutEdit_Click(object sender, RoutedEventArgs e)
         {
-            var item = (MenuFlyoutItem)sender;
-            string test = ((MenuFlyoutItem)sender).Name;
-            int index = int.Parse(test.Remove(0, 5));
-            //textBoxEdit.Text = (element.DataContext as SourceData).Frames.ToString();
-            //if (textBoxEdit.Text == "0")
-            //{
-            //    textBlockEdit.Visibility = Visibility.Collapsed;
-            //    textBoxEdit.Visibility = Visibility.Collapsed;
-            //}
-            //else
-            //{
-            //    textBlockEdit.Visibility = Visibility.Visible;
-            //    textBoxEdit.Visibility = Visibility.Visible;
-            //}
-            //popUp.IsOpen = true;
+            Note note = databaseHelper.FindNoteByID(index);
+            DateTime date = DateTime.ParseExact(note.TimeOfNote, @"dd-MM-yyyy HH\:mm", CultureInfo.InvariantCulture);
+            datePickerEdit.Date = date.Date;
+            timePickerEdit.Time = date.TimeOfDay;
+            textBoxEdit.Text = note.TextOfNote;
+
+            foreach (var item in comboBoxEdit1.Items)
+            {
+                if ((item as ComboBoxItem).Name == note.RoomID.ToString())
+                {
+                    comboBoxEdit1.SelectedItem = item;
+                    break;
+                }
+            }
+            popUp.IsOpen = true;
+        }
+
+        private void popUp_Opened(object sender, object e)
+        {
+            if (RequestedTheme == ElementTheme.Dark)
+            {
+                gridEdit.Background = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
+            }
+            else if (RequestedTheme == ElementTheme.Light)
+            {
+                gridEdit.Background = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+            }
+        }
+        private void buttonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            Note note = databaseHelper.FindNoteByID(index);
+            note.RoomID = int.Parse((comboBoxEdit1.SelectedItem as ComboBoxItem).Name);
+            note.RoomName = (comboBoxEdit1.SelectedItem as ComboBoxItem).Content.ToString();
+            note.TextOfNote = textBoxEdit.Text;
+            note.TimeOfNote = datePickerEdit.Date.ToString("dd-MM-yyyy") + " " + timePickerEdit.Time.ToString(@"hh\:mm");
+
+            databaseHelper.UpdateNote(note);
+            MakeList();
+            popUp.IsOpen = false;
         }
     }
 }

@@ -47,7 +47,7 @@
         <!--TODO: Content should be placed within the following grid-->
         <StackPanel Grid.Row="1" x:Name="ContentRoot" Margin="10,0">
             <Button Name="b3" Click="b3_Click" Height="94" Content="Pokaż powiadomienie" Width="211" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <Grid x:Name="GridAddNote" Visibility="Collapsed">
+            <Grid x:Name="GridAddNote" Visibility="Visible">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -62,16 +62,7 @@
                 <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Opis i miejsce: " VerticalAlignment="Center"/>
                 <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="Kiedy: " VerticalAlignment="Center" Grid.Row="1"/>
 
-                <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Grid.Row="1" Grid.Column="2" PlaceholderText="Dzień tygodnia" Margin="0,0,5,0" Visibility="Collapsed">
-                    <x:String>Poniedziałek</x:String>
-                    <x:String>Wtorek</x:String>
-                    <x:String>Środa</x:String>
-                    <x:String>Czwartek</x:String>
-                    <x:String>Piątek</x:String>
-                    <x:String>Sobota</x:String>
-                    <x:String>Niedziela</x:String>
-                </ComboBox>
-                <ComboBox x:Name="comboBox1" Grid.Column="2" PlaceholderText="Miejsce" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <ComboBox x:Name="comboBox1" Grid.Column="2" PlaceholderText="Sala" VerticalAlignment="Center" Margin="0,0,5,0"/>
 
                 <TimePicker x:Name="timePicker" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" ClockIdentifier="24HourClock"/>
                 <DatePicker x:Name="datePicker" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1" Margin="5,0" />
@@ -81,6 +72,39 @@
 
             </Grid>
         </StackPanel>
+
+        <Popup x:Name="popUp" IsOpen="False" IsLightDismissEnabled="True" Opened="popUp_Opened">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PaneThemeTransition />
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+
+            <Grid x:Name="gridEdit" Width="{Binding ActualWidth, ElementName=LayoutRoot, Mode=OneWay}" Background="Black">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <TextBlock x:Name="textBlockEdit1" TextWrapping="Wrap" Text="Opis i miejsce: " VerticalAlignment="Center"/>
+                <TextBlock x:Name="textBlockEdit2" TextWrapping="Wrap" Text="Kiedy: " VerticalAlignment="Center" Grid.Row="1"/>
+
+                <ComboBox x:Name="comboBoxEdit1" Grid.Column="2" PlaceholderText="Sala" VerticalAlignment="Center" Margin="0,0,5,0"/>
+
+                <TimePicker x:Name="timePickerEdit" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" ClockIdentifier="24HourClock"/>
+                <DatePicker x:Name="datePickerEdit" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1" Margin="5,0" />
+                <TextBox x:Name="textBoxEdit" Margin="5,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Grid.Column="1"/>
+                <Button x:Name="buttonEdit" Grid.Column="2" Grid.Row="2" Content="Zmień" Click="buttonEdit_Click" FontSize="{ThemeResource TextStyleLargeFontSize}" HorizontalAlignment="Center" />
+
+            </Grid>
+        </Popup>
+
     </Grid>
 </Page>
 

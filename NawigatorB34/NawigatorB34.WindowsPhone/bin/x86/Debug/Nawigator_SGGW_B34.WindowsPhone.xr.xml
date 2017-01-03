@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Roots xmlns="clr-namespace:Microsoft.Xaml.Tools.XamlCompiler.RootLog;assembly=Microsoft.Windows.UI.Xaml.81.Build.Tasks">
+  <Roots.PropertyPathNames>
+    <RootPropertyPathName Name="ActualWidth" />
+  </Roots.PropertyPathNames>
   <Roots.RootTypes>
     <RootType FullName="Windows.UI.Xaml.Application" />
     <RootType FullName="Windows.UI.Xaml.Controls.Page">
@@ -22,6 +25,8 @@
       <RootProperty Name="Children" />
       <RootProperty Name="ColumnDefinitions" />
       <RootProperty Name="ChildrenTransitions" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Background" />
       <RootProperty Name="Visibility" />
       <RootProperty Name="Margin" />
       <RootMethod Name="GetRow" />
@@ -69,7 +74,6 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Width" />
-      <RootProperty Name="Visibility" />
       <RootProperty Name="Items" />
       <RootEvent Name="SelectionChanged" />
       <RootEvent Name="DropDownClosed" />
@@ -96,14 +100,17 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Media.Animation.TransitionCollection" />
     <RootType FullName="Windows.UI.Xaml.Media.Animation.EntranceThemeTransition" />
-    <RootType FullName="Windows.UI.Xaml.Controls.Button">
-      <RootProperty Name="Name" />
-      <RootProperty Name="Height" />
-      <RootProperty Name="Content" />
-      <RootProperty Name="Width" />
-      <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootEvent Name="Click" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Primitives.Popup">
+      <RootProperty Name="IsOpen" />
+      <RootProperty Name="IsLightDismissEnabled" />
+      <RootProperty Name="ChildTransitions" />
+      <RootProperty Name="Child" />
+      <RootEvent Name="Opened" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.PaneThemeTransition" />
+    <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="ElementName" />
+      <RootProperty Name="Mode" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TimePicker">
       <RootProperty Name="HorizontalAlignment" />
@@ -120,7 +127,16 @@
       <RootProperty Name="Text" />
       <RootProperty Name="VerticalAlignment" />
     </RootType>
-    <RootType FullName="System.String" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Button">
+      <RootProperty Name="Content" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Name" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootEvent Name="Click" />
+    </RootType>
     <RootType FullName="Nawigator_SGGW_B34.NotesPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.Slider">
       <RootProperty Name="VerticalAlignment" />

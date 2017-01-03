@@ -172,8 +172,8 @@ namespace Nawigator_SGGW_B34
 
                 comboBox.SelectedIndex = -1;
 
-                roomStart = databaseHelper.FindRoomByID((comboBox1.SelectedItem as ComboBoxItem).Name);
-                roomFinish = databaseHelper.FindRoomByID((comboBox2.SelectedItem as ComboBoxItem).Name);
+                roomStart = databaseHelper.FindRoomByID(int.Parse((comboBox1.SelectedItem as ComboBoxItem).Name));
+                roomFinish = databaseHelper.FindRoomByID(int.Parse((comboBox2.SelectedItem as ComboBoxItem).Name));
 
                 object[] images = await drawer.DrawPath(roomStart, roomFinish);
                 if (images.Length == 1)

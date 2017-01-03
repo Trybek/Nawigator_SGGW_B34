@@ -18,7 +18,6 @@ C:\Users\Jogurt1\Documents\Visual Studio 2015\Projects\NawigatorB34\NawigatorB34
 C:\Users\Jogurt1\Documents\Visual Studio 2015\Projects\NawigatorB34\NawigatorB34\NawigatorB34.WindowsPhone\bin\x86\Debug\WriteableBitmapEx.WinRT.dll
 C:\Users\Jogurt1\Documents\Visual Studio 2015\Projects\NawigatorB34\NawigatorB34\NawigatorB34.WindowsPhone\bin\x86\Debug\WriteableBitmapEx.WinRT.pdb
 C:\Users\Jogurt1\Documents\Visual Studio 2015\Projects\NawigatorB34\NawigatorB34\NawigatorB34.WindowsPhone\bin\x86\Debug\WriteableBitmapEx.WinRT.xml
-C:\Users\Jogurt1\Documents\Visual Studio 2015\Projects\NawigatorB34\NawigatorB34\NawigatorB34.WindowsPhone\obj\x86\Debug\Nawigator_SGGW_B34.WindowsPhone.csprojResolveAssemblyReference.cache
 C:\Users\Jogurt1\Documents\Visual Studio 2015\Projects\NawigatorB34\NawigatorB34\NawigatorB34.WindowsPhone\obj\x86\Debug\App.g.i.cs
 C:\Users\Jogurt1\Documents\Visual Studio 2015\Projects\NawigatorB34\NawigatorB34\NawigatorB34.WindowsPhone\obj\x86\Debug\App.g.cs
 C:\Users\Jogurt1\Documents\Visual Studio 2015\Projects\NawigatorB34\NawigatorB34\NawigatorB34.WindowsPhone\obj\x86\Debug\MainPage.g.i.cs

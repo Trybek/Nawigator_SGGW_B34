@@ -55,13 +55,20 @@ namespace Nawigator_SGGW_B34
                 return room;
             }
         }
-        public Room FindRoomByID(string ID)
+        public Room FindRoomByID(int ID)
         {
-            int id = int.Parse(ID);
             using (var dbConn = new SQLiteConnection(DBPath))
             {
-                Room room = dbConn.Table<Room>().First(r => r.ID == id);
+                Room room = dbConn.Table<Room>().First(r => r.ID == ID);
                 return room;
+            }
+        }
+        public Note FindNoteByID(int ID)
+        {
+            using (var dbConn = new SQLiteConnection(DBPath))
+            {
+                Note note = dbConn.Table<Note>().First(n => n.ID == ID);
+                return note;
             }
         }
         public string GetNameRoomByID(string ID)
@@ -72,7 +79,6 @@ namespace Nawigator_SGGW_B34
                 Room room = dbConn.Table<Room>().First(r => r.ID == id);
                 return room.Name;
             }
-
         }
         #endregion
         #region Read Sth from database
@@ -132,6 +138,30 @@ namespace Nawigator_SGGW_B34
             using (var dbConn = new SQLiteConnection(DBPath))
             {
                 dbConn.Insert(note);
+            }
+        }
+        #endregion
+        #region Update sth in database
+        public void UpdateNote(Note note)
+        {
+            using (var dbConn = new SQLiteConnection(DBPath))
+            {
+                var existingNote = dbConn.Query<Note>($"SELECT * FROM Note WHERE ID = {note.ID}").FirstOrDefault();
+                if (existingNote != null)
+                {
+                    existingNote.RoomID = note.RoomID;
+                    existingNote.RoomName = note.RoomName;
+                    existingNote.TextOfNote = note.TextOfNote;
+                    existingNote.TimeOfNote = note.TimeOfNote;
+                    dbConn.RunInTransaction(() =>
+                    {
+                        dbConn.Update(note);
+                    });
+                }
+                else
+                {
+                    dbConn.Insert(note);
+                }
             }
         }
         #endregion
