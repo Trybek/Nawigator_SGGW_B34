@@ -16,11 +16,12 @@ namespace Nawigator_SGGW_B34
 #if WINDOWS_PHONE_APP
         private TransitionCollection transitions;
 #endif
-
         public static int IDRoomNotification;
         public static int FontSize;
         public static int TimerNotifications;
         public static string ReadRoomsOnFloor;
+        public static bool RemoveOldNotes;
+        public static bool ShowNotifications;
 
         public App()
         {
@@ -55,10 +56,28 @@ namespace Nawigator_SGGW_B34
                 ReadRoomsOnFloor = "-1;0;1;2;3";
             }
 
-            if (!CheckFileExists("NawigatorDB.db3").Result)
+            if (settings.Values.ContainsKey("RemoveOldNotes"))
             {
-                CopyDatabase();
+                RemoveOldNotes = bool.Parse(settings.Values["RemoveOldNotes"].ToString());
             }
+            else
+            {
+                RemoveOldNotes = false;
+            }
+
+            if (settings.Values.ContainsKey("ShowNotifications"))
+            {
+                ShowNotifications = bool.Parse(settings.Values["ShowNotifications"].ToString());
+            }
+            else
+            {
+                ShowNotifications = true;
+            }
+
+            //if (!CheckFileExists("NawigatorDB.db3").Result)
+            //{
+            //    CopyDatabase();
+            //}
 
         }
 

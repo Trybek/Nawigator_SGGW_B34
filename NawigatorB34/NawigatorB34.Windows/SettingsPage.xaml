@@ -42,6 +42,9 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Rozmiar czcionki: " VerticalAlignment="Center"/>
@@ -62,6 +65,9 @@
                 <CheckBox Content="2 piętro" Name="checkBox2"/>
                 <CheckBox Content="3 piętro" Name="checkBox3"/>
             </ComboBox>
+
+            <ToggleSwitch x:Name="toggleSwitch" Grid.ColumnSpan="2" Header="Powiadomienia" Grid.Row="5" VerticalAlignment="Top" OffContent="Wyłączone" OnContent="Włączone" FontSize="12" Toggled="toggleSwitch_Toggled"/>
+            <ToggleSwitch x:Name="toggleSwitch1" Grid.ColumnSpan="2" Header="Stare notatki" Grid.Row="6" VerticalAlignment="Top" OnContent="Usuń" OffContent="Zostaw" Toggled="toggleSwitch1_Toggled"/>
 
         </Grid>
     </Grid>

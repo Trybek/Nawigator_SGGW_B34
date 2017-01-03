@@ -1,16 +1,19 @@
 ﻿using Nawigator_SGGW_B34.Models;
 using System;
+using System.Collections.Generic;
 
 namespace Nawigator_SGGW_B34
 {
     interface INotifications
     {
-        ISQLite databaseHelper { get; }
+        ISQLite DatabaseHelper { get; }
+        bool IsNotificationAllowed { get; }
+        bool RemoveOldNotes { get; }
+
         void AddNotification(Room room, DateTime time);
-        bool Exist();
-        DateTime GetCurrentTime();
-        bool IsNotificationAllowed();
-        void RemoveExpiredMessage();
-        void ShowMessage(Room room);
+        void RemoveExpiredNotes(ref List<Note> listOfNotes);
+        void ShowMessage(Room room);//zbędne jest tylko do pokazania przykładowego powiadomienia
+
+        List<Note> GetListOfNotes();
     }
 }

@@ -11,6 +11,7 @@ namespace Nawigator_SGGW_B34
         void DrawPathBetweenFloors();
         void DrawPathStartHorizontal(Room roomStart, Room roomFinish, bool start = true);
         void DrawPathStartVertical(Room roomStart, Room roomFinish, bool start = true);
-        Task<object[]> DrawPath(Room start, Room finish);
+        Task<object[]> DrawPath(Room start, Room finish);//Dla windowsa i windowsa phone musi być async
+        //object[] DrawPath(Room start, Room finish);//Dla Androida nie musi być
     }
 }

@@ -19,7 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IDrawer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)INotifications.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ISQLite.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Notes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Note.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Room.cs" />
   </ItemGroup>
   <ItemGroup>

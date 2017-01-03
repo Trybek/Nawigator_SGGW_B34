@@ -22,14 +22,11 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="Nawigator_SGGW_B34.Windows.exe" EntryPoint="NawigatorB34.Windows.App">
-      <m2:VisualElements DisplayName="NawigatorB34.Windows" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="NawigatorB34.Windows" ForegroundText="light" BackgroundColor="#464646">
+      <m2:VisualElements DisplayName="NawigatorB34.Windows" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="NawigatorB34.Windows" ForegroundText="light" BackgroundColor="#464646" ToastCapable="true">
         <m2:SplashScreen Image="Assets\SplashScreen.png" />
       </m2:VisualElements>
     </Application>
   </Applications>
-  <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
   <Dependencies>
     <PackageDependency Name="Microsoft.VCLibs.120.00.Debug" MinVersion="12.0.21005.1" />
   </Dependencies>

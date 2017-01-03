@@ -10,8 +10,8 @@ namespace Nawigator_SGGW_B34
 {
     public sealed partial class MainPage : Page
     {
-        private SQLiteWindows databaseHelper;
-        private DrawerWindows drawer;
+        private ISQLite databaseHelper;
+        private IDrawer drawer;
         private Room roomStart;
         private Room roomFinish;
 
@@ -28,7 +28,7 @@ namespace Nawigator_SGGW_B34
 
         private void Current_Suspending(object sender, Windows.ApplicationModel.SuspendingEventArgs e)
         {
-            if (Frame.CurrentSourcePageType.FullName == "NawigatorB34.MainPage")
+            if (Frame.CurrentSourcePageType.FullName == "Nawigator_SGGW_B34.MainPage")
             {
                 Application.Current.Exit();
             }

@@ -10,8 +10,8 @@ namespace Nawigator_SGGW_B34
 {
     public sealed partial class MainPage : Page
     {
-        private SQLiteWinPhone databaseHelper;
-        private DrawerWinPhone drawer;
+        private ISQLite databaseHelper;
+        private IDrawer drawer;
         private Room roomStart;
         private Room roomFinish;
 
@@ -25,6 +25,7 @@ namespace Nawigator_SGGW_B34
 
             Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed;
         }
+
         private void MakeMainPage()
         {
             var list = databaseHelper.ReadRooms();
@@ -129,7 +130,7 @@ namespace Nawigator_SGGW_B34
 
         private void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
         {
-            if (!e.Handled && Frame.CurrentSourcePageType.FullName == "NawigatorB34.MainPage")
+            if (!e.Handled && Frame.CurrentSourcePageType.FullName == "Nawigator_SGGW_B34.MainPage")
             {
                 Application.Current.Exit();
             }

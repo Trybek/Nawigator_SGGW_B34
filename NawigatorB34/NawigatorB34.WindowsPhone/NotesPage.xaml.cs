@@ -11,8 +11,8 @@ namespace Nawigator_SGGW_B34
 {
     public sealed partial class NotesPage : Page
     {
-        private NotificationsWinPhone notifications;
-        private SQLiteWinPhone databaseHelper;
+        private INotifications notifications;
+        private ISQLite databaseHelper;
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
@@ -111,32 +111,23 @@ namespace Nawigator_SGGW_B34
                     ContentRoot.Children.Remove(item as TextBlock);
                 }
             }
-            List<Notes> listOfNotes = databaseHelper.ReadNotes();
+
+            List<Note> listOfNotes = notifications.GetListOfNotes();
             if (listOfNotes.Count == 0)
             {
                 return;
             }
-            else
+
+            foreach (var note in listOfNotes)
             {
-                foreach (var note in listOfNotes)
+                TextBlock text = new TextBlock()
                 {
-                    DateTime date = DateTime.ParseExact(note.TimeOfNote, "dd-MM-yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture);
-                    if (date < DateTime.Now)
-                    {
-                        databaseHelper.DeleteNote(note.ID);
-                    }
-                    else
-                    {
-                        TextBlock text = new TextBlock()
-                        {
-                            FontSize = App.FontSize,
-                            Text = $"{note.TextOfNote}\nW dniu: {note.TimeOfNote.Insert(10, " o godzinie ")} w {note.RoomName}\n",
-                            Name = "item" + note.ID
-                        };
-                        text.Tapped += Text_Tapped;
-                        ContentRoot.Children.Insert(0, text);
-                    }
-                }
+                    FontSize = App.FontSize,
+                    Text = $"{note.TextOfNote}\nW dniu: {note.TimeOfNote.Insert(10, " o godzinie ")} w {note.RoomName}\n",
+                    Name = "item" + note.ID
+                };
+                text.Tapped += Text_Tapped;
+                ContentRoot.Children.Insert(0, text);
             }
         }
 
@@ -162,7 +153,7 @@ namespace Nawigator_SGGW_B34
         }
         private void b3_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty((comboBox1.SelectedItem as ComboBoxItem).Name))
+            if (comboBox1.SelectedItem != null && string.IsNullOrEmpty((comboBox1.SelectedItem as ComboBoxItem).Name))
             {
                 notifications.ShowMessage(databaseHelper.FindRoomByID((comboBox1.SelectedItem as ComboBoxItem).Name));
             }
@@ -173,7 +164,7 @@ namespace Nawigator_SGGW_B34
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            Notes note = new Notes();
+            Note note = new Note();
             note.RoomID = int.Parse((comboBox1.SelectedItem as ComboBoxItem).Name);
             note.RoomName = (comboBox1.SelectedItem as ComboBoxItem).Content.ToString();
             note.TextOfNote = textBox.Text;
@@ -188,9 +179,7 @@ namespace Nawigator_SGGW_B34
             };
             text.Tapped += Text_Tapped;
             ContentRoot.Children.Insert(0, text);
-
             notifications.AddNotification(databaseHelper.FindRoomByID(note.RoomID.ToString()), DateTime.Parse(note.TimeOfNote));
-
             GridAddNote.Visibility = Visibility.Collapsed;
         }
 
@@ -231,6 +220,5 @@ namespace Nawigator_SGGW_B34
             //}
             //popUp.IsOpen = true;
         }
-
     }
 }

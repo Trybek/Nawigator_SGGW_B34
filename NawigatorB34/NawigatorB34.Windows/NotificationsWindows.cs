@@ -8,7 +8,9 @@ namespace Nawigator_SGGW_B34
 {
     class NotificationsWindows : INotifications
     {
-        public ISQLite databaseHelper { get { return new SQLiteWindows(); } }
+        public ISQLite DatabaseHelper { get { return new SQLiteWindows(); } }
+        public bool IsNotificationAllowed { get { return App.ShowNotifications; } } //Sprawdza wg ustawień, systemowo może być wyłączone nie wiem jak to sprawdzić 
+        public bool RemoveOldNotes { get { return App.RemoveOldNotes; } }
 
         public void AddNotification(Room room, DateTime time)
         {
@@ -29,24 +31,8 @@ namespace Nawigator_SGGW_B34
             toastNotifier.AddToSchedule(customAlarmScheduledToast);
         }
 
-        public bool Exist()
+        public void RemoveExpiredNotes(ref List<Note> listOfNotes)
         {
-            throw new NotImplementedException();
-        }
-
-        public DateTime GetCurrentTime()
-        {//to już w ogóle nie ma sensu :P
-            return DateTime.Now;
-        }
-
-        public bool IsNotificationAllowed()
-        {//W windows nie ma sensu 
-            return true;
-        }
-
-        public void RemoveExpiredMessage()
-        {
-            List<Notes> listOfNotes = databaseHelper.ReadNotes();
             if (listOfNotes.Count == 0)
             {
                 return;
@@ -56,11 +42,12 @@ namespace Nawigator_SGGW_B34
                 foreach (var note in listOfNotes)
                 {
                     DateTime date = DateTime.ParseExact(note.TimeOfNote, "dd-MM-yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture);
-                    if (date < DateTime.Now)
+                    if (date < DateTime.Now && RemoveOldNotes)
                     {
-                        databaseHelper.DeleteNote(note.ID);
+                        DatabaseHelper.DeleteNote(note.ID);
                     }
                 }
+                listOfNotes = DatabaseHelper.ReadNotes();
             }
         }
 
@@ -84,5 +71,16 @@ namespace Nawigator_SGGW_B34
             var toast = new ToastNotification(toastXml);
             toastNotifier.Show(toast);
         }
+
+        public List<Note> GetListOfNotes()
+        {
+            List<Note> listOfNotes = DatabaseHelper.ReadNotes();
+            if (RemoveOldNotes)
+            {
+                RemoveExpiredNotes(ref listOfNotes);
+            }
+            return listOfNotes;
+        }
+
     }
 }

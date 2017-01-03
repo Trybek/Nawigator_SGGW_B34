@@ -42,6 +42,9 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Rozmiar czcionki: " VerticalAlignment="Center"/>
@@ -54,14 +57,17 @@
             <Slider x:ConnectionId='2' x:Name="sliderTimerNotifications" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Maximum="60"                                                     />
 
             <ComboBox x:ConnectionId='3' x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="2" Margin="0"                                                                                                                               >
-                <Button x:ConnectionId='4' Content="Zaznacz wszystkie piętra"                              />
-                <Button x:ConnectionId='5' Content="Odznacz wszystkie piętra"                                />
+                <Button x:ConnectionId='6' Content="Zaznacz wszystkie piętra"                              />
+                <Button x:ConnectionId='7' Content="Odznacz wszystkie piętra"                                />
                 <CheckBox Content="Przyziemie" Name="checkBox11"/>
                 <CheckBox Content="Parter" Name="checkBox0"/>
                 <CheckBox Content="1 piętro" Name="checkBox1"/>
                 <CheckBox Content="2 piętro" Name="checkBox2"/>
                 <CheckBox Content="3 piętro" Name="checkBox3"/>
             </ComboBox>
+
+            <ToggleSwitch x:ConnectionId='4' x:Name="toggleSwitch" Grid.ColumnSpan="2" Header="Powiadomienia" Grid.Row="5" VerticalAlignment="Top" OffContent="Wyłączone" OnContent="Włączone" FontSize="12"                               />
+            <ToggleSwitch x:ConnectionId='5' x:Name="toggleSwitch1" Grid.ColumnSpan="2" Header="Stare notatki" Grid.Row="6" VerticalAlignment="Top" OnContent="Usuń" OffContent="Zostaw"                                />
 
         </Grid>
     </Grid>

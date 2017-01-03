@@ -30,7 +30,7 @@ namespace Nawigator_SGGW_B34
                 try
                 {
                     List<Room> roomList = dbConn.Table<Room>().ToList();
-                    List<Notes> notesList = dbConn.Table<Notes>().ToList();
+                    List<Note> notesList = dbConn.Table<Note>().ToList();
                     return true;
                 }
                 catch (SQLiteException)
@@ -92,15 +92,15 @@ namespace Nawigator_SGGW_B34
                 return roomList;
             }
         }
-        public List<Notes> ReadNotes()
+        public List<Note> ReadNotes()
         {
             using (var dbConn = new SQLiteConnection(DBPath))
             {
-                if (dbConn.Table<Notes>().Count() == 0)
+                if (dbConn.Table<Note>().Count() == 0)
                 {
-                    return new List<Notes>();
+                    return new List<Note>();
                 }
-                List<Notes> notes = dbConn.Table<Notes>().ToList();
+                List<Note> notes = dbConn.Table<Note>().ToList();
                 List<Room> rooms = dbConn.Table<Room>().ToList();
                 foreach (var item in notes)
                 {
@@ -127,7 +127,7 @@ namespace Nawigator_SGGW_B34
         }
         #endregion
         #region Insert sth to database
-        public void InsertNote(Notes note)
+        public void InsertNote(Note note)
         {
             using (var dbConn = new SQLiteConnection(DBPath))
             {
@@ -140,7 +140,7 @@ namespace Nawigator_SGGW_B34
         {
             using (var dbConn = new SQLiteConnection(DBPath))
             {
-                var note = dbConn.Table<Notes>().First(n => n.ID == id);
+                var note = dbConn.Table<Note>().First(n => n.ID == id);
                 dbConn.Delete(note);
             }
         }

@@ -20,6 +20,8 @@ namespace Nawigator_SGGW_B34
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
+            toggleSwitch.IsOn = App.ShowNotifications;
+            toggleSwitch1.IsOn = App.RemoveOldNotes;
             sliderFontSize.Value = App.FontSize;
             sliderTimerNotifications.Value = App.TimerNotifications;
             textBlock2.Text = App.FontSize.ToString();
@@ -58,6 +60,10 @@ namespace Nawigator_SGGW_B34
                 else if (item is Slider)
                 {
                     (item as Slider).FontSize = App.FontSize;
+                }
+                else if(item is ToggleButton)
+                {
+                    (item as ToggleButton).FontSize = App.FontSize;
                 }
             }
         }
@@ -238,5 +244,30 @@ namespace Nawigator_SGGW_B34
 
         }
         #endregion
+
+        private void toggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            var settings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+
+            if (settings.Values.ContainsKey("ShowNotifications"))
+            {
+                settings.Values.Remove("ShowNotifications");
+            }
+            settings.Values.Add("ShowNotifications", toggleSwitch.IsOn);
+
+            App.ShowNotifications = toggleSwitch.IsOn;
+        }
+        private void toggleSwitch1_Toggled(object sender, RoutedEventArgs e)
+        {
+            var settings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+
+            if (settings.Values.ContainsKey("RemoveOldNotes"))
+            {
+                settings.Values.Remove("RemoveOldNotes");
+            }
+            settings.Values.Add("RemoveOldNotes", toggleSwitch.IsOn);
+
+            App.RemoveOldNotes = toggleSwitch1.IsOn;
+        }
     }
 }

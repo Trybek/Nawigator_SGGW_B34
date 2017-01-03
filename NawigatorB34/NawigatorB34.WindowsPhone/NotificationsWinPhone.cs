@@ -3,50 +3,45 @@ using System;
 using System.Collections.Generic;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
+using Windows.UI.Popups;
 
 namespace Nawigator_SGGW_B34
 {
     class NotificationsWinPhone : INotifications
     {
-        public ISQLite databaseHelper { get { return new SQLiteWinPhone(); } }
+        public ISQLite DatabaseHelper { get { return new SQLiteWinPhone(); } }
+        public bool IsNotificationAllowed { get { return App.ShowNotifications; } } //Sprawdza wg ustawień, systemowo może być wyłączone nie wiem jak to sprawdzić 
+        public bool RemoveOldNotes { get { return App.RemoveOldNotes; } }
 
-        public void AddNotification(Room room, DateTime time)
+        public async void AddNotification(Room room, DateTime time)
         {
-            var toastNotifier = ToastNotificationManager.CreateToastNotifier();
-            var toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
-            var toastText = toastXml.GetElementsByTagName("text");
-            var toastElement = ((XmlElement)toastXml.SelectSingleNode("/toast"));
-            toastElement.SetAttribute("launch", "toast://" + room.ID);
-            string nameRoom = room.Name.Replace("A", "Aula ")
-                                       .Replace("BW", " Łazienka damska").Replace("BM", " Łazienka męska")
-                                       .Replace("SDD", "Schody w dół od zielonej").Replace("SDU", "Schody w górę od zielonej")
-                                       .Replace("SUD", "Schody w dół od żółtej").Replace("SUU", "Schody w górę od żółtej");
+            if (IsNotificationAllowed)
+            {
+                var toastNotifier = ToastNotificationManager.CreateToastNotifier();
+                var toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
+                var toastText = toastXml.GetElementsByTagName("text");
+                var toastElement = ((XmlElement)toastXml.SelectSingleNode("/toast"));
+                toastElement.SetAttribute("launch", "toast://" + room.ID);
+                string nameRoom = room.Name.Replace("A", "Aula ")
+                                           .Replace("BW", " Łazienka damska").Replace("BM", " Łazienka męska")
+                                           .Replace("SDD", "Schody w dół od zielonej").Replace("SDU", "Schody w górę od zielonej")
+                                           .Replace("SUD", "Schody w dół od żółtej").Replace("SUU", "Schody w górę od żółtej");
 
-            toastText[0].AppendChild(toastXml.CreateTextNode($"Zajęcia za {App.TimerNotifications} min w sali {nameRoom}"));       //Heading text of Notification   
-            toastText[1].AppendChild(toastXml.CreateTextNode($"Chcesz zobaczyć mapę?"));    //Body text of Notification    
+                toastText[0].AppendChild(toastXml.CreateTextNode($"Zajęcia za {App.TimerNotifications} min w sali {nameRoom}"));       //Heading text of Notification   
+                toastText[1].AppendChild(toastXml.CreateTextNode($"Chcesz zobaczyć mapę?"));    //Body text of Notification    
 
-            var customAlarmScheduledToast = new ScheduledToastNotification(toastXml, time);
-            toastNotifier.AddToSchedule(customAlarmScheduledToast);
+                var customAlarmScheduledToast = new ScheduledToastNotification(toastXml, time);
+                toastNotifier.AddToSchedule(customAlarmScheduledToast);
+            }
+            else
+            {
+                MessageDialog message = new MessageDialog("Powiadomienia w aplikacji są wyłączone, aby je włączyć proszę przejść do ustawień.");
+                await message.ShowAsync();
+            }
         }
 
-        public bool Exist()
+        public void RemoveExpiredNotes(ref List<Note> listOfNotes)
         {
-            throw new NotImplementedException();
-        }
-
-        public DateTime GetCurrentTime()
-        {//to już w ogóle nie ma sensu :P
-            return DateTime.Now;
-        }
-
-        public bool IsNotificationAllowed()
-        {//W windows phone nie ma sensu 
-            return true;
-        }
-
-        public void RemoveExpiredMessage()
-        {
-            List<Notes> listOfNotes = databaseHelper.ReadNotes();
             if (listOfNotes.Count == 0)
             {
                 return;
@@ -56,33 +51,52 @@ namespace Nawigator_SGGW_B34
                 foreach (var note in listOfNotes)
                 {
                     DateTime date = DateTime.ParseExact(note.TimeOfNote, "dd-MM-yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture);
-                    if (date < DateTime.Now)
+                    if (date < DateTime.Now && RemoveOldNotes)
                     {
-                        databaseHelper.DeleteNote(note.ID);
+                        DatabaseHelper.DeleteNote(note.ID);
                     }
                 }
+                listOfNotes = DatabaseHelper.ReadNotes();
             }
         }
 
-        public void ShowMessage(Room room)
+        public async void ShowMessage(Room room)
         {
-            var toastNotifier = ToastNotificationManager.CreateToastNotifier();
-            var toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
-            var toastText = toastXml.GetElementsByTagName("text");
-            var toastElement = ((XmlElement)toastXml.SelectSingleNode("/toast"));
-            toastElement.SetAttribute("launch", "toast://" + room.ID);
+            if (IsNotificationAllowed)
+            {
+                var toastNotifier = ToastNotificationManager.CreateToastNotifier();
+                var toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
+                var toastText = toastXml.GetElementsByTagName("text");
+                var toastElement = ((XmlElement)toastXml.SelectSingleNode("/toast"));
+                toastElement.SetAttribute("launch", "toast://" + room.ID);
 
-            string nameRoom = room.Name.Replace("A", "Aula ")
-                                       .Replace("BW", " Łazienka damska").Replace("BM", " Łazienka męska")
-                                       .Replace("SDD", "Schody w dół od zielonej").Replace("SDU", "Schody w górę od zielonej")
-                                       .Replace("SUD", "Schody w dół od żółtej").Replace("SUU", "Schody w górę od żółtej");
+                string nameRoom = room.Name.Replace("A", "Aula ")
+                                           .Replace("BW", " Łazienka damska").Replace("BM", " Łazienka męska")
+                                           .Replace("SDD", "Schody w dół od zielonej").Replace("SDU", "Schody w górę od zielonej")
+                                           .Replace("SUD", "Schody w dół od żółtej").Replace("SUU", "Schody w górę od żółtej");
 
 
-            toastText[0].AppendChild(toastXml.CreateTextNode($"Zajęcia za {App.TimerNotifications} min w sali {nameRoom}"));       //Heading text of Notification   
-            toastText[1].AppendChild(toastXml.CreateTextNode($"Chcesz zobaczyć mapę?"));    //Body text of Notification    
+                toastText[0].AppendChild(toastXml.CreateTextNode($"Zajęcia za {App.TimerNotifications} min w sali {nameRoom}"));       //Heading text of Notification   
+                toastText[1].AppendChild(toastXml.CreateTextNode($"Chcesz zobaczyć mapę?"));    //Body text of Notification    
 
-            var toast = new ToastNotification(toastXml);
-            toastNotifier.Show(toast);
+                var toast = new ToastNotification(toastXml);
+                toastNotifier.Show(toast);
+            }
+            else
+            {
+                MessageDialog message = new MessageDialog("Powiadomienia w aplikacji są wyłączone, aby je włączyć proszę przejść do ustawień.");
+                await message.ShowAsync();
+            }
+        }
+
+        public List<Note> GetListOfNotes()
+        {
+            List<Note> listOfNotes = DatabaseHelper.ReadNotes();
+            if(RemoveOldNotes)
+            {
+                RemoveExpiredNotes(ref listOfNotes);
+            }
+            return listOfNotes;
         }
     }
 }
