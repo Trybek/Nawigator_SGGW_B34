@@ -1,0 +1,16 @@
+NawigatorB34.Android.EditNotesPopup, NawigatorB34.Android;md5105beb2f4bcf428b4d1f3d455dad0736.EditNotesPopup
+NawigatorB34.Android.EditNotesPopup, NawigatorB34.Android, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5105beb2f4bcf428b4d1f3d455dad0736.EditNotesPopup
+NawigatorB34.Android.EditNotesPopup;md5105beb2f4bcf428b4d1f3d455dad0736.EditNotesPopup
+nawigatorb34.android.EditNotesPopup;md5105beb2f4bcf428b4d1f3d455dad0736.EditNotesPopup
+NawigatorB34.Android.MainActivity, NawigatorB34.Android;md5105beb2f4bcf428b4d1f3d455dad0736.MainActivity
+NawigatorB34.Android.MainActivity, NawigatorB34.Android, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5105beb2f4bcf428b4d1f3d455dad0736.MainActivity
+NawigatorB34.Android.MainActivity;md5105beb2f4bcf428b4d1f3d455dad0736.MainActivity
+nawigatorb34.android.MainActivity;md5105beb2f4bcf428b4d1f3d455dad0736.MainActivity
+NawigatorB34.Android.NotesPage, NawigatorB34.Android;md5105beb2f4bcf428b4d1f3d455dad0736.NotesPage
+NawigatorB34.Android.NotesPage, NawigatorB34.Android, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5105beb2f4bcf428b4d1f3d455dad0736.NotesPage
+NawigatorB34.Android.NotesPage;md5105beb2f4bcf428b4d1f3d455dad0736.NotesPage
+nawigatorb34.android.NotesPage;md5105beb2f4bcf428b4d1f3d455dad0736.NotesPage
+NawigatorB34.Android.SettingsPage, NawigatorB34.Android;md5105beb2f4bcf428b4d1f3d455dad0736.SettingsPage
+NawigatorB34.Android.SettingsPage, NawigatorB34.Android, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5105beb2f4bcf428b4d1f3d455dad0736.SettingsPage
+NawigatorB34.Android.SettingsPage;md5105beb2f4bcf428b4d1f3d455dad0736.SettingsPage
+nawigatorb34.android.SettingsPage;md5105beb2f4bcf428b4d1f3d455dad0736.SettingsPage

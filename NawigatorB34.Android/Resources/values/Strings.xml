@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="ApplicationName">NawigatorB34.Android</string>
+  <string name="floor_prompt">Wybierz piętro</string>
+  <string-array name="floor_array">
+    <item>3</item>
+    <item>2</item>
+    <item>1</item>
+    <item>0</item>
+    <item>-1</item>
+  </string-array>
+  <string name="NoteID">0</string>
+</resources>

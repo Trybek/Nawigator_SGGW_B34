@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/linearLayout1">
+    <TextView
+        android:text="Ustawienia"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="38.5dp"
+        android:id="@+id/textView4"
+        android:layout_marginLeft="8.0dp"
+        android:layout_marginTop="10.5dp" />
+    <TextView
+        android:text="Rozmiar czcionki:"
+        android:layout_width="match_parent"
+        android:layout_height="23.5dp"
+        android:id="@+id/textView1"
+        android:layout_marginTop="12.0dp"
+        android:layout_marginLeft="9.5dp"
+        android:layout_marginBottom="8.0dp" />
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBarFontSize"
+        android:max="40"
+        android:layout_marginBottom="20.0dp" />
+    <TextView
+        android:text="Czas przypomnienia:"
+        android:layout_width="match_parent"
+        android:layout_height="27.0dp"
+        android:id="@+id/textView2"
+        android:layout_marginLeft="8.5dp"
+        android:layout_marginBottom="4.5dp"
+        android:layout_marginTop="5.5dp" />
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBarTimer"
+        android:max="60"
+        android:layout_marginBottom="13.5dp" />
+    <TextView
+        android:text="Pokazuj piętra:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_marginTop="10.5dp"
+        android:layout_marginBottom="6.0dp"
+        android:layout_marginLeft="9.5dp" />
+    <CheckBox
+        android:text="Przyziemie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox1"
+        android:layout_marginLeft="5.5dp" />
+    <CheckBox
+        android:text="Parter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox2"
+        android:layout_marginLeft="5.5dp" />
+    <CheckBox
+        android:text="1 piętro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox3"
+        android:layout_marginLeft="5.5dp" />
+    <CheckBox
+        android:text="2 piętro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox4"
+        android:layout_marginLeft="5.5dp" />
+    <CheckBox
+        android:text="3 piętro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox5"
+        android:layout_marginLeft="5.5dp" />
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch1"
+        android:textOff="Wyłączone"
+        android:textOn="Włączone"
+        android:text="Powiadomienia"
+        android:layout_marginLeft="9.5dp"
+        android:layout_marginRight="9.5dp"
+        android:layout_marginTop="11.5dp"
+        android:layout_marginBottom="5.5dp" />
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch2"
+        android:text="Stare notatki"
+        android:textOff="Zostaw"
+        android:textOn="Usuń"
+        android:layout_marginLeft="9.5dp"
+        android:layout_marginRight="9.5dp"
+        android:layout_marginTop="5.5dp" />
+</LinearLayout>
