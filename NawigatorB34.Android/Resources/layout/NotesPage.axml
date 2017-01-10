@@ -50,8 +50,8 @@
                 android:layout_column="1"
                 android:id="@+id/editTextOfNote"
                 android:layout_width="99.5dp"
-                android:text="Opis"
-                android:layout_marginTop="3.5dp" />
+                android:layout_marginTop="3.5dp"
+                android:hint="Opis" />
             <Spinner
                 android:id="@+id/spinner1"
                 android:layout_column="2"
@@ -80,22 +80,22 @@
                 android:layout_marginTop="10.0dp" />
             <EditText
                 android:inputType="time"
-                android:id="@+id/editTextHour"
-                android:text="godzina"
+                android:id="@+id/editTextTime"
                 android:layout_column="1"
                 android:layout_width="99.0dp"
                 android:layout_marginLeft="39.0dp"
                 android:layout_marginBottom="4.5dp"
-                android:layout_marginTop="9.0dp" />
+                android:layout_marginTop="9.0dp"
+                android:hint="godzina" />
             <EditText
                 android:inputType="date"
                 android:id="@+id/editTextDate"
-                android:text="data"
                 android:layout_column="2"
                 android:layout_width="80.0dp"
                 android:layout_marginLeft="19.0dp"
                 android:layout_marginBottom="2.5dp"
-                android:layout_marginTop="9.0dp" />
+                android:layout_marginTop="9.0dp"
+                android:hint="data" />
         </TableRow>
         <TableRow
             android:id="@+id/tableRow8">

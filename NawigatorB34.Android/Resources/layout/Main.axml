@@ -73,7 +73,20 @@
         android:layout_height="246.5dp"
         android:id="@+id/imageView1"
         android:layout_marginLeft="3.0dp"
-        android:layout_marginRight="3.0dp" />
+        android:layout_marginRight="3.0dp"
+        android:visibility="gone" />
+    <TextView
+        android:text="Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView6"
+        android:visibility="gone" />
+    <ImageView
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:visibility="gone" />
     <Button
         android:text="Ustawienia"
         android:layout_width="match_parent"

@@ -5,6 +5,7 @@ using Android.Content.Res;
 using Android.Content;
 using Android.Preferences;
 using Android.App;
+using Android.OS;
 
 namespace NawigatorB34.Android
 {
@@ -64,28 +65,32 @@ namespace NawigatorB34.Android
                                            .Replace("SDD", "Schody w dó³ od zielonej").Replace("SDU", "Schody w górê od zielonej")
                                            .Replace("SUD", "Schody w dó³ od ¿ó³tej").Replace("SUU", "Schody w górê od ¿ó³tej");
 
+                Intent intent = new Intent(context, typeof(MainActivity));
+                intent.PutExtra("RoomId", room.ID);
+                const int pendingIntentId = 0;
+                PendingIntent pendingIntent = PendingIntent.GetActivity(context, pendingIntentId, intent, PendingIntentFlags.OneShot);
+
                 Notification.Builder builder = new Notification.Builder(context)
-                       .SetContentTitle($"Zajêcia za { 51 }min w sali { nameRoom}")
-                       .SetContentText("Chcesz zobaczyæ mapê?")
-                       .SetSmallIcon(Resource.Drawable.Icon);
+                        .SetAutoCancel(true)
+                        .SetContentIntent(pendingIntent)
+                        .SetContentTitle($"Zajêcia za { timerNotifications } min w sali { nameRoom }")
+                        .SetContentText("Chcesz zobaczyæ mapê?")
+                        .SetSmallIcon(Resource.Drawable.Icon)
+                        .SetWhen((DateTime.Now - time).Ticks);
 
-                // Build the notification:
                 Notification notification = builder.Build();
-
-                // Get the notification manager:
                 NotificationManager notificationManager = context.GetSystemService(Context.NotificationService) as NotificationManager;
 
-                // Publish the notification:
                 const int notificationId = 0;
                 notificationManager.Notify(notificationId, notification);
 
-                //var customAlarmScheduledToast = new ScheduledToastNotification(toastXml, time);
-                //toastNotifier.AddToSchedule(customAlarmScheduledToast);
             }
             else
             {
-                //MessageDialog message = new MessageDialog("Powiadomienia w aplikacji s¹ wy³¹czone, aby je w³¹czyæ proszê przejœæ do ustawieñ.");
-                //await message.ShowAsync();
+                AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                alert.SetMessage("Powiadomienia w aplikacji s¹ wy³¹czone, aby je w³¹czyæ proszê przejœæ do ustawieñ.");
+                Dialog dialog = alert.Create();
+                dialog.Show();
             }
         }
 

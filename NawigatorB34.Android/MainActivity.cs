@@ -7,6 +7,7 @@ using NawigatorB34.Android.Models;
 using Android.Content;
 using Android.Preferences;
 using Android.Util;
+using Android.Views;
 
 namespace NawigatorB34.Android
 {
@@ -36,8 +37,8 @@ namespace NawigatorB34.Android
             {
                 using (Spinner spinnerFinish = FindViewById<Spinner>(Resource.Id.spinnerFinish))
                 {
-                    spinnerStart.ItemSelected += spinnerStart_ItemSelected;
-                    spinnerFinish.ItemSelected += spinnerFinish_ItemSelected;
+                    spinnerStart.ItemSelected += spinnerRooms_ItemSelected;
+                    spinnerFinish.ItemSelected += spinnerRooms_ItemSelected;
                 }
             }
 
@@ -128,15 +129,97 @@ namespace NawigatorB34.Android
             {
                 using (Spinner spinnerFinish = FindViewById<Spinner>(Resource.Id.spinnerFinish))
                 {
-                    spinnerStart.ItemSelected += spinnerStart_ItemSelected;
-                    spinnerFinish.ItemSelected += spinnerFinish_ItemSelected;
                     using (var ada = new ArrayAdapter(this, Resource.Layout.TextViewItem, roomsName.ToArray()))
                     {
                         spinnerStart.Adapter = ada;
                         spinnerFinish.Adapter = ada;
                     }
-                    roomsName.Clear();
-                    roomsID.Clear();
+                }
+            }
+            if (Intent.Extras != null)
+            {
+                int roomId = Intent.Extras.GetInt("RoomId", 0);
+                if (roomId != 0)
+                {
+                    using (Spinner spinnerFinish = FindViewById<Spinner>(Resource.Id.spinnerFinish))
+                    {
+                        spinnerFinish.SetSelection(roomsID.IndexOf(roomId));
+                    }
+                }
+            }
+            roomsName.Clear();
+            roomsID.Clear();
+        }
+
+        private void spinnerRooms_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            using (Spinner spinnerFinish = FindViewById<Spinner>(Resource.Id.spinnerFinish))
+            {
+                using (Spinner spinnerStart = FindViewById<Spinner>(Resource.Id.spinnerStart))
+                {
+                    if (spinnerFinish.SelectedItemPosition != 0 && spinnerStart.SelectedItemPosition != 0)
+                    {
+                        using (Spinner roomID = FindViewById<Spinner>(Resource.Id.spinnerRoomID))
+                        {
+                            Room start = databaseHelper.FindRoomByID(int.Parse(roomID.GetItemAtPosition(spinnerStart.SelectedItemPosition).ToString()));
+                            Room finish = databaseHelper.FindRoomByID(int.Parse(roomID.GetItemAtPosition(spinnerFinish.SelectedItemPosition).ToString()));
+
+                            object[] maps = drawer.DrawPath(start, finish);
+                            if (maps.Length == 1)
+                            {
+                                using (ImageView image = FindViewById<ImageView>(Resource.Id.imageView1))
+                                {
+                                    image.Visibility = ViewStates.Visible;
+                                    image.SetImageResource(Color.Transparent);
+                                    image.SetImageBitmap(maps[0] as Bitmap);
+                                }
+                                using (ImageView image = FindViewById<ImageView>(Resource.Id.imageView2))
+                                {
+                                    image.Visibility = ViewStates.Gone;
+                                }
+                                using (TextView text = FindViewById<TextView>(Resource.Id.textView6))
+                                {
+                                    text.Visibility = ViewStates.Gone;
+                                }
+                            }
+                            else
+                            {
+                                using (ImageView image = FindViewById<ImageView>(Resource.Id.imageView1))
+                                {
+                                    image.Visibility = ViewStates.Visible;
+                                    image.SetImageResource(Color.Transparent);
+                                    image.SetImageBitmap(maps[0] as Bitmap);
+                                }
+                                using (ImageView image = FindViewById<ImageView>(Resource.Id.imageView2))
+                                {
+                                    image.Visibility = ViewStates.Visible;
+                                    image.SetImageResource(Color.Transparent);
+                                    image.SetImageBitmap(maps[1] as Bitmap);
+                                }
+                                using (TextView text = FindViewById<TextView>(Resource.Id.textView6))
+                                {
+                                    text.Visibility = ViewStates.Visible;
+                                    int floorDifference = start.Floor - finish.Floor;
+                                    if (floorDifference == -1)
+                                    {
+                                        text.Text = "Piętro wyżej";
+                                    }
+                                    else if (floorDifference < 0)
+                                    {
+                                        text.Text = $"{-floorDifference} pięter wyżej";
+                                    }
+                                    else if (floorDifference == 1)
+                                    {
+                                        text.Text = "Piętro niżej";
+                                    }
+                                    else
+                                    {
+                                        text.Text = $"{floorDifference} pięter niżej";
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

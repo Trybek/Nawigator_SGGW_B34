@@ -60,6 +60,16 @@ namespace NawigatorB34.Android
             {
                 button.Click += ButtonAdd_Click;
             }
+
+            using (EditText timeOfNote = FindViewById<EditText>(Resource.Id.editTextTime))
+            {
+                timeOfNote.Text = DateTime.Now.ToString("HH:mm:ss");
+            }
+            using (EditText dateOfNote = FindViewById<EditText>(Resource.Id.editTextDate))
+            {
+                dateOfNote.Text = DateTime.Now.ToString("dd-MM-yyyy");
+            }
+
             MakeList();
             SetFontSize();
         }
@@ -154,12 +164,21 @@ namespace NawigatorB34.Android
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
+            string errors = string.Empty;
             Note note = new Note();
-            using (EditText date = FindViewById<EditText>(Resource.Id.editTextDate))
+            using (EditText dateEditText = FindViewById<EditText>(Resource.Id.editTextDate))
             {
-                using (EditText time = FindViewById<EditText>(Resource.Id.editTextHour))
+                using (EditText timeEditText = FindViewById<EditText>(Resource.Id.editTextTime))
                 {
-                    note.TimeOfNote = date.Text + "" + time.Text;//datePicker.ToString("dd-MM-yyyy") + " " + timePicker.CurrentHour + ":" + timePicker.CurrentMinute;
+                    DateTime date;
+                    if (!DateTime.TryParse(dateEditText.Text + " " + timeEditText.Text, out date))
+                    {
+                        errors += "Nieprawid³owa data lub godzina powiadomienia.\n";
+                    }
+                    else
+                    {
+                        note.TimeOfNote = date.ToString("dd-MM-yyyy HH:mm:ss");
+                    }
                 }
             }
             using (Spinner spinner = FindViewById<Spinner>(Resource.Id.spinnerRoomID))
@@ -173,11 +192,27 @@ namespace NawigatorB34.Android
             }
             using (var editText = FindViewById<EditText>(Resource.Id.editTextOfNote))
             {
-                note.TextOfNote = editText.Text;
+                if (string.IsNullOrEmpty(editText.Text))
+                {
+                    errors += "Nie podano opisu notatki.\n";
+                }
+                else
+                {
+                    note.TextOfNote = editText.Text;
+                }
+            }
+            if (!string.IsNullOrEmpty(errors))
+            {
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.SetTitle("B³¹d");
+                alert.SetMessage(errors);
+                Dialog dialog = alert.Create();
+                dialog.Show();
+                return;
             }
 
-            databaseHelper.InsertNote(note);
             notifications.AddNotification(databaseHelper.FindRoomByID(note.RoomID), DateTime.Parse(note.TimeOfNote));
+            databaseHelper.InsertNote(note);
 
             using (var layout = Window.DecorView.FindViewById<LinearLayout>(Resource.Id.linearLayout1))
             {

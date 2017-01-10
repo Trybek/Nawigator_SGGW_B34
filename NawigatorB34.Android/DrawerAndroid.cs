@@ -79,28 +79,30 @@ namespace NawigatorB34.Android
             {
                 DrawPathStartVertical(roomStart, stairsStart);
             }
+
             using (Canvas tempCanvas = new Canvas(bmpFloorStart))
             {
                 tempCanvas.DrawLine((int)roomStart.X, (int)roomStart.Y, (int)stairsStart.X, (int)stairsStart.Y, paint);
-
-                if ((stairsFinish.X == 165 && roomFinish.X == 165) ||
-                    (stairsFinish.X == 735 && roomFinish.X == 735) ||
-                    (stairsFinish.X == 1305 && roomFinish.X == 1305) ||
-                    (stairsFinish.X == 1880 && roomFinish.X == 1880) ||
-                    (stairsFinish.Y == 380 && roomFinish.Y == 380) ||
-                    (stairsFinish.Y == 990 && roomFinish.Y == 990))
-                {
-                    //Nic nie trzeba robić :D
-                }
-                else if (stairsFinish.Y > 380 && stairsFinish.Y < 990)
-                {
-                    DrawPathStartHorizontal(stairsFinish, roomFinish, false);
-                }
-                else
-                {
-                    DrawPathStartVertical(stairsFinish, roomFinish, false);
-                }
             }
+
+            if ((stairsFinish.X == 165 && roomFinish.X == 165) ||
+                (stairsFinish.X == 735 && roomFinish.X == 735) ||
+                (stairsFinish.X == 1305 && roomFinish.X == 1305) ||
+                (stairsFinish.X == 1880 && roomFinish.X == 1880) ||
+                (stairsFinish.Y == 380 && roomFinish.Y == 380) ||
+                (stairsFinish.Y == 990 && roomFinish.Y == 990))
+            {
+                //Nic nie trzeba robić :D
+            }
+            else if (stairsFinish.Y > 380 && stairsFinish.Y < 990)
+            {
+                DrawPathStartHorizontal(stairsFinish, roomFinish, false);
+            }
+            else
+            {
+                DrawPathStartVertical(stairsFinish, roomFinish, false);
+            }
+
             using (Canvas tempCanvas = new Canvas(bmpFloorFinish))
             {
                 tempCanvas.DrawLine((int)stairsFinish.X, (int)stairsFinish.Y, (int)roomFinish.X, (int)roomFinish.Y, paint);
@@ -361,118 +363,111 @@ namespace NawigatorB34.Android
         }
         public void DrawPathStartVertical(Room roomStart, Room roomFinish, bool start = true)
         {
-            Canvas tempCanvas;
-            if (start)
+            using (Canvas tempCanvas = start ? canvasStart : canvasFinish)
             {
-                tempCanvas = canvasStart;
-            }
-            else
-            {
-                tempCanvas = canvasFinish;
-            }
+                int newX = 0;
+                //165, 735, 1305, 1880
+                //  450, 1020, 1590
+                //  600,  570,  575
+                //A       X <= 450
+                //B 450 < X <= 1020
+                //C 1020< X <= 1590
+                //D 1590< X
 
-            int newX = 0;
-            //165, 735, 1305, 1880
-            //  450, 1020, 1590
-            //  600,  570,  575
-            //A       X <= 450
-            //B 450 < X <= 1020
-            //C 1020< X <= 1590
-            //D 1590< X
-
-            if (Math.Abs(roomFinish.X - roomStart.X) < 575 &&
-                Math.Abs(roomFinish.Y - roomStart.Y) == 0)
-            {
-                return;
+                if (Math.Abs(roomFinish.X - roomStart.X) < 575 &&
+                    Math.Abs(roomFinish.Y - roomStart.Y) == 0)
+                {
+                    return;
+                }
+                //↓roomStart jest w przedziale A
+                else if (roomStart.X <= 450 &&//AA
+                    roomFinish.X <= 450)
+                {
+                    newX = 165;
+                }
+                else if (roomStart.X <= 450 &&//AB
+                         roomFinish.X > 450 && roomFinish.X <= 1020)
+                {
+                    newX = 735;
+                }
+                else if (roomStart.X <= 450 &&//AC
+                         roomFinish.X > 1020 && roomFinish.X <= 1590)
+                {
+                    newX = 1305;
+                }
+                else if (roomStart.X <= 450 &&//AD
+                         roomFinish.X > 1590)
+                {
+                    newX = 1880;
+                }
+                //↓roomStart jest w przedziale B
+                else if (roomStart.X > 450 && roomStart.X <= 1020 &&//BA
+                         roomFinish.X <= 450)
+                {
+                    newX = 165;
+                }
+                else if (roomStart.X > 450 && roomStart.X <= 1020 &&//BB
+                        roomFinish.X > 450 && roomFinish.X <= 1020)
+                {
+                    newX = 735;
+                }
+                else if (roomStart.X > 450 && roomStart.X <= 1020 &&//BC
+                         roomFinish.X > 1020 && roomFinish.X <= 1590)
+                {
+                    newX = 1305;
+                }
+                else if (roomStart.X > 450 && roomStart.X <= 1020 &&//BD
+                         roomFinish.X > 1590)
+                {
+                    newX = 1880;
+                }
+                //↓roomStart jest w przedziale C
+                else if (roomStart.X > 1020 && roomStart.X <= 1590 &&//CA
+                         roomFinish.X <= 450)
+                {
+                    newX = 165;
+                }
+                else if (roomStart.X > 1020 && roomStart.X <= 1590 &&//CB
+                         roomFinish.X > 450 && roomFinish.X <= 1000)
+                {
+                    newX = 735;
+                }
+                else if (roomStart.X > 1020 && roomStart.X <= 1590 &&//CC
+                         roomFinish.X > 1000 && roomFinish.X <= 1590)
+                {
+                    newX = 1305;
+                }
+                else if (roomStart.X > 1020 && roomStart.X <= 1590 &&//CD
+                         roomFinish.X > 1590)
+                {
+                    newX = 1880;
+                }
+                //↓roomStart jest w przedziale D
+                else if (roomStart.X > 1590 &&//DA
+                         roomFinish.X <= 450)
+                {
+                    newX = 165;
+                }
+                else if (roomStart.X > 1590 &&//DB
+                         roomFinish.X > 450 && roomFinish.X <= 1000)
+                {
+                    newX = 735;
+                }
+                else if (roomStart.X > 1590 &&//DC
+                         roomFinish.X > 1000 && roomFinish.X <= 1590)
+                {
+                    newX = 1305;
+                }
+                else if (roomStart.X > 1590 &&//DD
+                         roomFinish.X > 1590)
+                {
+                    newX = 1880;
+                }
+                tempCanvas.DrawLine((int)roomStart.X, (int)roomStart.Y, newX, (int)roomStart.Y, paint);
+                tempCanvas.DrawLine((int)roomFinish.X, (int)roomFinish.Y, newX, (int)roomFinish.Y, paint);
+                roomStart.X = newX;
+                roomFinish.X = newX;
             }
-            //↓roomStart jest w przedziale A
-            else if (roomStart.X <= 450 &&//AA
-                roomFinish.X <= 450)
-            {
-                newX = 165;
-            }
-            else if (roomStart.X <= 450 &&//AB
-                     roomFinish.X > 450 && roomFinish.X <= 1020)
-            {
-                newX = 735;
-            }
-            else if (roomStart.X <= 450 &&//AC
-                     roomFinish.X > 1020 && roomFinish.X <= 1590)
-            {
-                newX = 1305;
-            }
-            else if (roomStart.X <= 450 &&//AD
-                     roomFinish.X > 1590)
-            {
-                newX = 1880;
-            }
-            //↓roomStart jest w przedziale B
-            else if (roomStart.X > 450 && roomStart.X <= 1020 &&//BA
-                     roomFinish.X <= 450)
-            {
-                newX = 165;
-            }
-            else if (roomStart.X > 450 && roomStart.X <= 1020 &&//BB
-                    roomFinish.X > 450 && roomFinish.X <= 1020)
-            {
-                newX = 735;
-            }
-            else if (roomStart.X > 450 && roomStart.X <= 1020 &&//BC
-                     roomFinish.X > 1020 && roomFinish.X <= 1590)
-            {
-                newX = 1305;
-            }
-            else if (roomStart.X > 450 && roomStart.X <= 1020 &&//BD
-                     roomFinish.X > 1590)
-            {
-                newX = 1880;
-            }
-            //↓roomStart jest w przedziale C
-            else if (roomStart.X > 1020 && roomStart.X <= 1590 &&//CA
-                     roomFinish.X <= 450)
-            {
-                newX = 165;
-            }
-            else if (roomStart.X > 1020 && roomStart.X <= 1590 &&//CB
-                     roomFinish.X > 450 && roomFinish.X <= 1000)
-            {
-                newX = 735;
-            }
-            else if (roomStart.X > 1020 && roomStart.X <= 1590 &&//CC
-                     roomFinish.X > 1000 && roomFinish.X <= 1590)
-            {
-                newX = 1305;
-            }
-            else if (roomStart.X > 1020 && roomStart.X <= 1590 &&//CD
-                     roomFinish.X > 1590)
-            {
-                newX = 1880;
-            }
-            //↓roomStart jest w przedziale D
-            else if (roomStart.X > 1590 &&//DA
-                     roomFinish.X <= 450)
-            {
-                newX = 165;
-            }
-            else if (roomStart.X > 1590 &&//DB
-                     roomFinish.X > 450 && roomFinish.X <= 1000)
-            {
-                newX = 735;
-            }
-            else if (roomStart.X > 1590 &&//DC
-                     roomFinish.X > 1000 && roomFinish.X <= 1590)
-            {
-                newX = 1305;
-            }
-            else if (roomStart.X > 1590 &&//DD
-                     roomFinish.X > 1590)
-            {
-                newX = 1880;
-            }
-            tempCanvas.DrawLine((int)roomStart.X, (int)roomStart.Y, newX, (int)roomStart.Y, paint);
-            tempCanvas.DrawLine((int)roomFinish.X, (int)roomFinish.Y, newX, (int)roomFinish.Y, paint);
-            roomStart.X = newX;
-            roomFinish.X = newX;
         }
 
         public object[] DrawPath(Room start, Room finish)
@@ -482,42 +477,156 @@ namespace NawigatorB34.Android
 
             if (roomStart.Floor != roomFinish.Floor)
             {
-                DrawPathBetweenFloors();
+                int idOfMapStart = 3, idOfMapFinish = 3;
+                switch (finish.Floor)
+                {
+                    case -1:
+                        {
+                            idOfMapFinish = Resource.Drawable.floorM1;
+                            break;
+                        }
+                    case 0:
+                        {
+                            idOfMapFinish = Resource.Drawable.floor0;
+                            break;
+                        }
+                    case 1:
+                        {
+                            idOfMapFinish = Resource.Drawable.floor1;
+                            break;
+                        }
+                    case 2:
+                        {
+                            idOfMapFinish = Resource.Drawable.floor2;
+                            break;
+                        }
+                    case 3:
+                        {
+                            idOfMapFinish = Resource.Drawable.floor3;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+                switch (start.Floor)
+                {
+                    case -1:
+                        {
+                            idOfMapStart = Resource.Drawable.floorM1;
+                            break;
+                        }
+                    case 0:
+                        {
+                            idOfMapStart = Resource.Drawable.floor0;
+                            break;
+                        }
+                    case 1:
+                        {
+                            idOfMapStart = Resource.Drawable.floor1;
+                            break;
+                        }
+                    case 2:
+                        {
+                            idOfMapStart = Resource.Drawable.floor2;
+                            break;
+                        }
+                    case 3:
+                        {
+                            idOfMapStart = Resource.Drawable.floor3;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+                using (Bitmap bitmapStart = BitmapFactory.DecodeResource(context.Resources, idOfMapStart))
+                {
+                    bmpFloorStart = Bitmap.CreateBitmap(bitmapStart.Width, bitmapStart.Height, Bitmap.Config.Rgb565);
 
-                return new object[] { bmpFloorStart, bmpFloorFinish };
+                    using (canvasStart = new Canvas(bmpFloorStart))
+                    {
+                        canvasStart.DrawBitmap(bitmapStart, new Matrix(), null);
+                        using (Bitmap bitmapFinish = BitmapFactory.DecodeResource(context.Resources, idOfMapFinish))
+                        {
+                            bmpFloorFinish = Bitmap.CreateBitmap(bitmapFinish.Width, bitmapFinish.Height, Bitmap.Config.Rgb565);
+
+                            using (canvasFinish = new Canvas(bmpFloorFinish))
+                            {
+                                canvasFinish.DrawBitmap(bitmapFinish, new Matrix(), null);
+
+                                DrawPathBetweenFloors();
+
+                                return new object[] { bmpFloorStart, bmpFloorFinish };
+                            }
+                        }
+                    }
+                }
             }
             else
             {
-                using (Bitmap myBitmap = BitmapFactory.DecodeResource(context.Resources, Resource.Drawable.floor3))
+                int idOfMap = 3;
+                switch (finish.Floor)
+                {
+                    case -1:
+                        {
+                            idOfMap = Resource.Drawable.floorM1;
+                            break;
+                        }
+                    case 0:
+                        {
+                            idOfMap = Resource.Drawable.floor0;
+                            break;
+                        }
+                    case 1:
+                        {
+                            idOfMap = Resource.Drawable.floor1;
+                            break;
+                        }
+                    case 2:
+                        {
+                            idOfMap = Resource.Drawable.floor2;
+                            break;
+                        }
+                    case 3:
+                        {
+                            idOfMap = Resource.Drawable.floor3;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+                using (Bitmap myBitmap = BitmapFactory.DecodeResource(context.Resources, idOfMap))
                 {
                     bmpFloorStart = Bitmap.CreateBitmap(myBitmap.Width, myBitmap.Height, Bitmap.Config.Rgb565);
-                    canvasStart = new Canvas(bmpFloorStart);
-                    canvasStart.DrawBitmap(myBitmap, new Matrix(), null);
-                }
-                DrawPathFromRoomToCorridor(roomStart);
-                DrawPathFromRoomToCorridor(roomFinish, true);
+                    using (canvasStart = new Canvas(bmpFloorStart))
+                    {
+                        canvasStart.DrawBitmap(myBitmap, new Matrix(), null);
+                        canvasStart.DrawLine((float)roomStart.X, (float)roomStart.Y, (float)roomFinish.X, (float)roomFinish.Y, paint);
 
-                if ((roomStart.X == 165 && roomFinish.X == 165) ||
-                    (roomStart.X == 735 && roomFinish.X == 735) ||
-                    (roomStart.X == 1305 && roomFinish.X == 1305) ||
-                    (roomStart.X == 1880 && roomFinish.X == 1880) ||
-                    (roomStart.Y == 380 && roomFinish.Y == 380) ||
-                    (roomStart.Y == 990 && roomFinish.Y == 990))
-                {
-                    //Nic nie trzeba robić :D
-                }
-                else if (roomStart.Y > 380 && roomStart.Y < 990)
-                {
-                    DrawPathStartHorizontal(roomStart, roomFinish);
-                }
-                else
-                {
-                    DrawPathStartVertical(roomStart, roomFinish);
-                }
+                        DrawPathFromRoomToCorridor(roomStart);
+                        DrawPathFromRoomToCorridor(roomFinish, true);
 
-                canvasStart.DrawLine((float)roomStart.X, (float)roomStart.Y, (float)roomFinish.X, (float)roomFinish.Y, paint);
+                        if ((roomStart.X == 165 && roomFinish.X == 165) ||
+                            (roomStart.X == 735 && roomFinish.X == 735) ||
+                            (roomStart.X == 1305 && roomFinish.X == 1305) ||
+                            (roomStart.X == 1880 && roomFinish.X == 1880) ||
+                            (roomStart.Y == 380 && roomFinish.Y == 380) ||
+                            (roomStart.Y == 990 && roomFinish.Y == 990))
+                        {
+                            //Nic nie trzeba robić :D
+                        }
+                        else if (roomStart.Y > 380 && roomStart.Y < 990)
+                        {
+                            DrawPathStartHorizontal(roomStart, roomFinish);
+                        }
+                        else
+                        {
+                            DrawPathStartVertical(roomStart, roomFinish);
+                        }
 
-                return new object[] { bmpFloorStart };
+                        return new object[] { bmpFloorStart };
+                    }
+
+                }
             }
         }
     }

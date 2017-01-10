@@ -180,6 +180,7 @@ namespace Nawigator_SGGW_B34
                     scrollViewer.Visibility = Visibility.Visible;
                     scrollViewer2.Visibility = Visibility.Collapsed;
                     image.Source = images[0] as WriteableBitmap;
+                    textBlock3.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
@@ -187,6 +188,25 @@ namespace Nawigator_SGGW_B34
                     scrollViewer2.Visibility = Visibility.Visible;
                     image.Source = images[0] as WriteableBitmap;
                     image2.Source = images[1] as WriteableBitmap;
+
+                    int floorDifference = roomStart.Floor - roomFinish.Floor;
+                    if (floorDifference == -1)
+                    {
+                        textBlock3.Text = "Piętro wyżej";
+                    }
+                    else if (floorDifference < 0)
+                    {
+                        textBlock3.Text = $"{-floorDifference} pięter wyżej";
+                    }
+                    else if (floorDifference == 1)
+                    {
+                        textBlock3.Text = "Piętro niżej";
+                    }
+                    else
+                    {
+                        textBlock3.Text = $"{floorDifference} pięter niżej";
+                    }
+                    textBlock3.Visibility = Visibility.Visible;
                 }
 
                 progressRing.IsActive = false;

@@ -61,7 +61,7 @@ namespace Nawigator_SGGW_B34
                 {
                     (item as Slider).FontSize = App.FontSize;
                 }
-                else if(item is ToggleButton)
+                else if (item is ToggleButton)
                 {
                     (item as ToggleButton).FontSize = App.FontSize;
                 }
@@ -244,7 +244,7 @@ namespace Nawigator_SGGW_B34
 
         }
         #endregion
-
+        #region ToggleSwitch Methods
         private void toggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
             var settings = Windows.Storage.ApplicationData.Current.RoamingSettings;
@@ -256,7 +256,20 @@ namespace Nawigator_SGGW_B34
             settings.Values.Add("ShowNotifications", toggleSwitch.IsOn);
 
             App.ShowNotifications = toggleSwitch.IsOn;
+            if (toggleSwitch.IsOn)
+            {
+                textBlock1.Visibility = Visibility.Visible;
+                textBlock3.Visibility = Visibility.Visible;
+                sliderTimerNotifications.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                textBlock1.Visibility = Visibility.Collapsed;
+                textBlock3.Visibility = Visibility.Collapsed;
+                sliderTimerNotifications.Visibility = Visibility.Collapsed;
+            }
         }
+
         private void toggleSwitch1_Toggled(object sender, RoutedEventArgs e)
         {
             var settings = Windows.Storage.ApplicationData.Current.RoamingSettings;
@@ -269,5 +282,6 @@ namespace Nawigator_SGGW_B34
 
             App.RemoveOldNotes = toggleSwitch1.IsOn;
         }
+        #endregion
     }
 }

@@ -382,7 +382,7 @@
             isAbstract="false">
             <classMoniker
               Id="4da12f29-e398-4927-8ab1-81d58cdcd676"
-              LastKnownName="DrawerWindPhone"
+              LastKnownName="DrawerWinPhone"
               LastKnownLocation="ModelingProject1.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -539,6 +539,45 @@
                       value="2" />
                   </upperValueInternal>
                 </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="5658115e-b69e-446d-95d5-0cbb488509aa"
+            isDerived="false"
+            sourceEndRoleName="MainPage"
+            targetEndRoleName="SQLiteWinPhone"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="dbfd425d-d792-416d-b4b6-58dca7081a34"
+              LastKnownName="SQLiteWinPhone"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d079cc62-098f-4c21-bef1-6d1fc957f88f"
+                  name="MainPage"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="cd904481-d1f1-46f3-a763-c918f8b8fd0c"
+                  name="SQLiteWinPhone"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
@@ -702,7 +741,7 @@
           </operation>
           <operation
             Id="742325df-9e7f-49cb-8bd4-aacc13041168"
-            name="ComboBox_SelectionChanged"
+            name="comboBox_SelectionChanged"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -725,7 +764,7 @@
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="cb5f7e52-f7de-4d86-be1a-d0e35f382cc6"
+                  Id="4767e1b5-71fd-494f-8faa-34b4c01df21a"
                   name="sender"
                   direction="In"
                   isUnique="false">
@@ -739,7 +778,7 @@
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="0096824c-734b-4688-9242-6f1fda0040e2"
+                  Id="478a2067-6c59-4cd9-93aa-23b369ad5e4e"
                   name="e"
                   direction="In"
                   isUnique="false">
@@ -755,7 +794,7 @@
           </operation>
           <operation
             Id="d2b9ab3f-5e8c-4061-83ff-394043aa09f0"
-            name="ComboBoxRooms_DropDownClosed"
+            name="comboBoxRooms_DropDownClosed"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -778,7 +817,7 @@
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="9f74a6f6-c572-4d82-88df-3932d1aa9949"
+                  Id="0a709b0a-d5d7-45d1-90d7-f30319e96031"
                   name="sender"
                   direction="In"
                   isUnique="false">
@@ -792,7 +831,7 @@
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="2ab3168a-5b6f-4adb-a4ce-75fc236dc2a4"
+                  Id="dab24d3b-c732-49be-a2c8-5e27411aa23b"
                   name="e"
                   direction="In"
                   isUnique="false">
@@ -808,7 +847,7 @@
           </operation>
           <operation
             Id="91b429e9-1e8a-4684-ad17-2ff71737be43"
-            name="ButtonSettings_Click"
+            name="buttonSettings_Click"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -831,7 +870,7 @@
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="961ce0b1-b063-489b-a50b-4d4c99a65ff3"
+                  Id="580d48a4-9771-4780-ae9b-1bec7e2e95af"
                   name="sender"
                   direction="In"
                   isUnique="false">
@@ -845,7 +884,7 @@
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="c9bc3e0a-d6b7-49c6-b5b4-3e7eeec14fa2"
+                  Id="aab8b87e-190f-45ef-aeea-1cf89cdc4833"
                   name="e"
                   direction="In"
                   isUnique="false">
@@ -861,7 +900,7 @@
           </operation>
           <operation
             Id="64469ada-5f94-44f4-b48c-66087cc32b65"
-            name="ButtonNotes_Click"
+            name="buttonNotes_Click"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -871,7 +910,20 @@
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="7ab83d86-2282-41cf-8d52-517ef9c26562"
+                  Id="39b3959f-7ba6-4559-8b9d-ce33bbe8435c"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="7f6a9fd5-b968-4284-a7a6-28867e82e38a"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="7e40a46f-ce4c-42d7-997b-38f633f6c62e"
                   name="sender"
                   direction="In"
                   isUnique="false">
@@ -885,7 +937,7 @@
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="9537c5f4-9daf-4e45-8443-1303fd0aebb9"
+                  Id="106403ee-1748-44bd-bc0c-d68e1e19fa43"
                   name="e"
                   direction="In"
                   isUnique="false">
@@ -893,19 +945,6 @@
                     <undefinedTypeMoniker
                       Id="12d19fbf-07dc-4553-8bfc-45f022f667c8"
                       LastKnownName="RoutedEventArgs"
-                      LastKnownLocation="ModelingProject1.uml" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="39b3959f-7ba6-4559-8b9d-ce33bbe8435c"
-                  direction="Return"
-                  isUnique="false">
-                  <type_NamedElement>
-                    <undefinedTypeMoniker
-                      Id="7f6a9fd5-b968-4284-a7a6-28867e82e38a"
-                      LastKnownName="void"
                       LastKnownLocation="ModelingProject1.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -1737,7 +1776,7 @@
     <packageHasNamedElement>
       <class
         Id="4da12f29-e398-4927-8ab1-81d58cdcd676"
-        name="DrawerWindPhone"
+        name="DrawerWinPhone"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -2205,45 +2244,6 @@
             </relationshipOwnedElementsInternal>
           </association>
           <association
-            Id="40df903d-097e-46b8-8e52-14595d1e8227"
-            isDerived="false"
-            sourceEndRoleName="NotesPage"
-            targetEndRoleName="SQLiteWinPhone"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="dbfd425d-d792-416d-b4b6-58dca7081a34"
-              LastKnownName="SQLiteWinPhone"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="3bc6f523-e144-49e4-aff6-ead81c12101c"
-                  name="NotesPage"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="Composite"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="77636f13-d46a-406b-9fbb-d975eb67218c"
-                  name="SQLiteWinPhone"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="true" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
             Id="c684295c-b1ca-4ccc-ba16-f64b9bf1d4df"
             isDerived="false"
             sourceEndRoleName="NotesPage"
@@ -2311,6 +2311,45 @@
                 <memberEnd
                   Id="c23318b2-257f-453a-8ef4-5ec49fe3f55c"
                   name="Room"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="5bef6022-275f-4e2a-a3cb-eda7cf43d48c"
+            isDerived="false"
+            sourceEndRoleName="NotesPage"
+            targetEndRoleName="SQLiteWinPhone"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="dbfd425d-d792-416d-b4b6-58dca7081a34"
+              LastKnownName="SQLiteWinPhone"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8234b8c0-7960-4a2f-9aa7-4108d79aeeda"
+                  name="NotesPage"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="bdc6c9f2-ebcb-4c84-8600-e670c0377ca0"
+                  name="SQLiteWinPhone"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -2418,7 +2457,7 @@
           </operation>
           <operation
             Id="23709fb0-c21f-4124-bd18-67e6a331086c"
-            name="b3_Click"
+            name="buttonShowExampleNotification_Click"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -2428,7 +2467,20 @@
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="39cb8f18-3a2e-4b97-a9ee-83bd26e22309"
+                  Id="a9056196-86e8-4f78-ae06-09d7926e47b0"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="7f6a9fd5-b968-4284-a7a6-28867e82e38a"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f6e46780-a169-40c4-a29e-3825fd2cbb35"
                   name="sender"
                   direction="In"
                   isUnique="false">
@@ -2442,7 +2494,7 @@
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="a5fdc149-a633-43e8-be5c-df3d8309a201"
+                  Id="6c47b1e6-9f07-4ada-b474-e67fff33ec8e"
                   name="e"
                   direction="In"
                   isUnique="false">
@@ -2450,19 +2502,6 @@
                     <undefinedTypeMoniker
                       Id="12d19fbf-07dc-4553-8bfc-45f022f667c8"
                       LastKnownName="RoutedEventArgs"
-                      LastKnownLocation="ModelingProject1.uml" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="a9056196-86e8-4f78-ae06-09d7926e47b0"
-                  direction="Return"
-                  isUnique="false">
-                  <type_NamedElement>
-                    <undefinedTypeMoniker
-                      Id="7f6a9fd5-b968-4284-a7a6-28867e82e38a"
-                      LastKnownName="void"
                       LastKnownLocation="ModelingProject1.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -4380,35 +4419,6 @@
       <undefinedType
         Id="e4b0de98-10ca-4a0e-8a98-4356c69102c7"
         name="PointerRoutedEventArgs" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <interaction
-        Id="27929760-518a-42dd-9aab-b1a8099c91cc"
-        name="WindowsPhone"
-        collapseFragmentsFlag="false"
-        isActiveClass="false"
-        isAbstract="false"
-        isLeaf="false"
-        isReentrant="false">
-        <ownedAttributesInternal>
-          <property
-            Id="17af7a68-85fd-4629-8f06-4e191e856438"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <classMoniker
-                Id="2bd30de2-4913-4783-bc1f-a5f9b54f3ff2"
-                LastKnownName="App"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-        </ownedAttributesInternal>
-      </interaction>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

@@ -32,6 +32,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -53,10 +54,10 @@
                 <ScrollViewer x:Name="scrollViewer" ZoomMode="Enabled" MinZoomFactor="1.0" MaxZoomFactor="3.0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.ColumnSpan="4" Grid.Row="4">
                     <Image x:Name="image" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                 </ScrollViewer>
-                <ScrollViewer x:Name="scrollViewer2" ZoomMode="Enabled" MinZoomFactor="1.0" MaxZoomFactor="3.0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.ColumnSpan="4" Grid.Row="5">
+                <TextBlock x:Name="textBlock3" HorizontalAlignment="Center" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="4"/>
+                <ScrollViewer x:Name="scrollViewer2" ZoomMode="Enabled" MinZoomFactor="1.0" MaxZoomFactor="3.0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.ColumnSpan="4" Grid.Row="6">
                     <Image x:Name="image2" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                 </ScrollViewer>
-                <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
             </Grid>
         </ScrollViewer>

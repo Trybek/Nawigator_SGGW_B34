@@ -26,6 +26,7 @@ namespace Nawigator_SGGW_B34
             sliderTimerNotifications.Value = App.TimerNotifications;
             textBlock2.Text = App.FontSize.ToString();
             textBlock3.Text = App.TimerNotifications + " min";
+
             foreach (var item in comboBox.Items)
             {
                 if (item is CheckBox)
@@ -251,6 +252,18 @@ namespace Nawigator_SGGW_B34
             settings.Values.Add("ShowNotifications", toggleSwitch.IsOn);
 
             App.ShowNotifications = toggleSwitch.IsOn;
+            if (toggleSwitch.IsOn)
+            {
+                textBlock1.Visibility = Visibility.Visible;
+                textBlock3.Visibility = Visibility.Visible;
+                sliderTimerNotifications.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                textBlock1.Visibility = Visibility.Collapsed;
+                textBlock3.Visibility = Visibility.Collapsed;
+                sliderTimerNotifications.Visibility = Visibility.Collapsed;
+            }
         }
         private void toggleSwitch1_Toggled(object sender, RoutedEventArgs e)
         {
