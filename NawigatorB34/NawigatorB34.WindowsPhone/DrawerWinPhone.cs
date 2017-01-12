@@ -288,38 +288,43 @@ namespace Nawigator_SGGW_B34
             }
 
         }
+
         public void DrawPathFromRoomToStairsAndReverse()
         {
             DrawPathFromRoomToCorridor(roomStart);
             DrawPathFromRoomToCorridor(roomFinish, true, false);
 
+            //SDD   1110    1250    schody na dole na dół
+            //SDU   930     1250    schody na dole do góry
+            //SUU   1110    110     schody na górze do góry
+            //SUD   930     110     schody na górze na dół 
+
             if (roomStart.Floor - roomFinish.Floor < 0)
             {//w dół
                 if (roomStart.Y > 685)
-                {
-                    stairsStart = databaseHelper.GetStairsByName($"{roomStart.Floor}/SDU");
-                    stairsFinish = databaseHelper.GetStairsByName($"{roomFinish.Floor}/SDD");
+                {//wprowadzić sztywno schody
+                    stairsStart = new Room(roomStart.Floor, "SDU", 930, 1250);
+                    stairsFinish = new Room(roomFinish.Floor, "SDD", 1110, 1250);
                 }
                 else
                 {
-                    stairsStart = databaseHelper.GetStairsByName($"{roomStart.Floor}/SUU");
-                    stairsFinish = databaseHelper.GetStairsByName($"{roomFinish.Floor}/SUD");
+                    stairsStart = new Room(roomStart.Floor, "SUU", 1110, 110);
+                    stairsFinish = new Room(roomFinish.Floor, "SUD", 930, 110);
                 }
             }
             else
             {//w górę
                 if (roomStart.Y > 685)
                 {
-                    stairsStart = databaseHelper.GetStairsByName($"{roomStart.Floor}/SDD");
-                    stairsFinish = databaseHelper.GetStairsByName($"{roomFinish.Floor}/SDU");
+                    stairsStart = new Room(roomStart.Floor, "SDD", 1110, 1250);
+                    stairsFinish = new Room(roomFinish.Floor, "SDU", 930, 1250);
                 }
                 else
                 {
-                    stairsStart = databaseHelper.GetStairsByName($"{roomStart.Floor}/SUD");
-                    stairsFinish = databaseHelper.GetStairsByName($"{roomFinish.Floor}/SUU");
+                    stairsStart = new Room(roomStart.Floor, "SUD", 930, 110);
+                    stairsFinish = new Room(roomFinish.Floor, "SUU", 1110, 110);
                 }
             }
-
             DrawPathFromRoomToCorridor(stairsStart, true);
             DrawPathFromRoomToCorridor(stairsFinish, false, false);
         }
