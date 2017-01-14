@@ -24,6 +24,37 @@ namespace Nawigator_SGGW_B34
             drawer = new DrawerWindows();
 
             Application.Current.Suspending += Current_Suspending;
+
+            comboBox.Items.Add(new ComboBoxItem()
+            {
+                Content = "Przyziemie",
+                Name = "floor11",
+                FontSize = App.FontSize
+            });
+            comboBox.Items.Add(new ComboBoxItem()
+            {
+                Content = "Parter",
+                Name = "floor0",
+                FontSize = App.FontSize
+            });
+            comboBox.Items.Add(new ComboBoxItem()
+            {
+                Content = "1 piętro",
+                Name = "floor1",
+                FontSize = App.FontSize
+            });
+            comboBox.Items.Add(new ComboBoxItem()
+            {
+                Content = "2 piętro",
+                Name = "floor2",
+                FontSize = App.FontSize
+            });
+            comboBox.Items.Add(new ComboBoxItem()
+            {
+                Content = "3 piętro",
+                Name = "floor3",
+                FontSize = App.FontSize
+            });
         }
 
         private void Current_Suspending(object sender, Windows.ApplicationModel.SuspendingEventArgs e)
@@ -36,6 +67,9 @@ namespace Nawigator_SGGW_B34
 
         private void MakeMainPage()
         {
+            comboBox1.Items.Clear();
+            comboBox2.Items.Clear();
+
             var list = databaseHelper.ReadRooms();
             string[] tab = App.ReadRoomsOnFloor.Split(';');
             foreach (Room room in list)
@@ -74,64 +108,6 @@ namespace Nawigator_SGGW_B34
                             break;
                         }
                     }
-                }
-            }
-            foreach (var item in tab)
-            {
-                switch (item)
-                {
-                    case "-1":
-                        {
-                            comboBox.Items.Add(new ComboBoxItem()
-                            {
-                                Content = "Przyziemie",
-                                Name = "floor11",
-                                FontSize = App.FontSize
-                            });
-                            break;
-                        }
-                    case "0":
-                        {
-                            comboBox.Items.Add(new ComboBoxItem()
-                            {
-                                Content = "Parter",
-                                Name = "floor0",
-                                FontSize = App.FontSize
-                            });
-                            break;
-                        }
-                    case "1":
-                        {
-                            comboBox.Items.Add(new ComboBoxItem()
-                            {
-                                Content = "1 piętro",
-                                Name = "floor1",
-                                FontSize = App.FontSize
-                            });
-                            break;
-                        }
-                    case "2":
-                        {
-                            comboBox.Items.Add(new ComboBoxItem()
-                            {
-                                Content = "2 piętro",
-                                Name = "floor2",
-                                FontSize = App.FontSize
-                            });
-                            break;
-                        }
-                    case "3":
-                        {
-                            comboBox.Items.Add(new ComboBoxItem()
-                            {
-                                Content = "3 piętro",
-                                Name = "floor3",
-                                FontSize = App.FontSize
-                            });
-                            break;
-                        }
-                    default:
-                        break;
                 }
             }
         }
