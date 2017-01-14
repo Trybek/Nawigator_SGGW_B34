@@ -31,26 +31,26 @@ namespace NawigatorB34.Android
             {
                 case EnumPosition.Up:
                     {
-                        canvasStart.DrawLine(x, y, x - 30, y + 30, paint);
-                        canvasStart.DrawLine(x, y, x + 30, y + 30, paint);
+                        canvasStart.DrawLine(x, y, x - 10, y + 10, paint);
+                        canvasStart.DrawLine(x, y, x + 10, y + 10, paint);
                         break;
                     }
                 case EnumPosition.Right:
                     {
-                        canvasStart.DrawLine(x, y, x - 30, y - 30, paint);
-                        canvasStart.DrawLine(x, y, x - 30, y + 30, paint);
+                        canvasStart.DrawLine(x, y, x - 10, y - 10, paint);
+                        canvasStart.DrawLine(x, y, x - 10, y + 10, paint);
                         break;
                     }
                 case EnumPosition.Down:
                     {
-                        canvasStart.DrawLine(x, y, x - 30, y - 30, paint);
-                        canvasStart.DrawLine(x, y, x + 30, y - 30, paint);
+                        canvasStart.DrawLine(x, y, x - 10, y - 10, paint);
+                        canvasStart.DrawLine(x, y, x + 10, y - 10, paint);
                         break;
                     }
                 case EnumPosition.Left:
                     {
-                        canvasStart.DrawLine(x, y, x + 30, y - 30, paint);
-                        canvasStart.DrawLine(x, y, x + 30, y + 30, paint);
+                        canvasStart.DrawLine(x, y, x + 10, y - 10, paint);
+                        canvasStart.DrawLine(x, y, x + 10, y + 10, paint);
                         break;
                     }
                 default:
@@ -62,16 +62,16 @@ namespace NawigatorB34.Android
         {
             DrawPathFromRoomToStairsAndReverse();
 
-            if ((roomStart.X == 165 && stairsStart.X == 165) ||
-                (roomStart.X == 735 && stairsStart.X == 735) ||
-                (roomStart.X == 1305 && stairsStart.X == 1305) ||
-                (roomStart.X == 1880 && stairsStart.X == 1880) ||
-                (roomStart.Y == 380 && stairsStart.Y == 380) ||
-                (roomStart.Y == 990 && stairsStart.Y == 990))
+            if ((roomStart.X == 51 && stairsStart.X == 51) ||
+                (roomStart.X == 230 && stairsStart.X == 230) ||
+                (roomStart.X == 410 && stairsStart.X == 410) ||
+                (roomStart.X == 589 && stairsStart.X == 589) ||
+                (roomStart.Y == 116 && stairsStart.Y == 116) ||
+                (roomStart.Y == 306 && stairsStart.Y == 306))
             {
                 //Nic nie trzeba robić :D
             }
-            else if (roomStart.Y > 380 && roomStart.Y < 990)
+            else if (roomStart.Y > 116 && roomStart.Y < 306)
             {
                 DrawPathStartHorizontal(roomStart, stairsStart);
             }
@@ -85,16 +85,16 @@ namespace NawigatorB34.Android
                 tempCanvas.DrawLine((int)roomStart.X, (int)roomStart.Y, (int)stairsStart.X, (int)stairsStart.Y, paint);
             }
 
-            if ((stairsFinish.X == 165 && roomFinish.X == 165) ||
-                (stairsFinish.X == 735 && roomFinish.X == 735) ||
-                (stairsFinish.X == 1305 && roomFinish.X == 1305) ||
-                (stairsFinish.X == 1880 && roomFinish.X == 1880) ||
-                (stairsFinish.Y == 380 && roomFinish.Y == 380) ||
-                (stairsFinish.Y == 990 && roomFinish.Y == 990))
+            if ((stairsFinish.X == 51 && roomFinish.X == 51) ||
+                (stairsFinish.X == 230 && roomFinish.X == 230) ||
+                (stairsFinish.X == 410 && roomFinish.X == 410) ||
+                (stairsFinish.X == 589 && roomFinish.X == 589) ||
+                (stairsFinish.Y == 116 && roomFinish.Y == 116) ||
+                (stairsFinish.Y == 306 && roomFinish.Y == 306))
             {
                 //Nic nie trzeba robić :D
             }
-            else if (stairsFinish.Y > 380 && stairsFinish.Y < 990)
+            else if (stairsFinish.Y > 116 && stairsFinish.Y < 306)
             {
                 DrawPathStartHorizontal(stairsFinish, roomFinish, false);
             }
@@ -111,109 +111,108 @@ namespace NawigatorB34.Android
 
         public void DrawPathFromRoomToCorridor(Room which, bool finish = false, bool start = true)
         {
-            //schody do góry X 1110 - rysuj do 1195
-            //schody na dół  X 930  - rysuj do 850
+            //schody do góry X 347 - rysuj do 1195
+            //schody na dół  X 291  - rysuj do 850
             switch ((int)which.X)
             {
-                case 100:
-                case 110:
+                case 35:
                     {
                         if (finish)
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Left, start);
                         }
-                        canvasStart.DrawLine((int)which.X, (int)which.Y, 165, (int)which.Y, paint);
-                        which.X = 165;
+                        canvasStart.DrawLine((int)which.X, (int)which.Y, 51, (int)which.Y, paint);
+                        which.X = 51;
                         break;
                     }
-                case 215:
+                case 67:
                     {
                         if (finish)
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Right, start);
                         }
-                        canvasStart.DrawLine((int)which.X, (int)which.Y, 165, (int)which.Y, paint);
-                        which.X = 165;
+                        canvasStart.DrawLine((int)which.X, (int)which.Y, 51, (int)which.Y, paint);
+                        which.X = 51;
                         break;
                     }
-                case 675:
+                case 212:
                     {
                         if (finish)
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Left, start);
                         }
-                        canvasStart.DrawLine((int)which.X, (int)which.Y, 735, (int)which.Y, paint);
-                        which.X = 735;
+                        canvasStart.DrawLine((int)which.X, (int)which.Y, 230, (int)which.Y, paint);
+                        which.X = 230;
                         break;
                     }
-                case 800:
+                case 250:
                     {
                         if (finish)
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Right, start);
                         }
-                        canvasStart.DrawLine((int)which.X, (int)which.Y, 735, (int)which.Y, paint);
-                        which.X = 735;
+                        canvasStart.DrawLine((int)which.X, (int)which.Y, 230, (int)which.Y, paint);
+                        which.X = 230;
                         break;
                     }
-                case 930:
+                case 291:
                     {
                         if (finish)
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Right, start);
                         }
                         canvasStart.DrawLine((int)which.X, (int)which.Y, 850, (int)which.Y, paint);
-                        which.X = 850;
+                        which.X = 265;
                         break;
                     }
-                case 1110:
+                case 347:
                     {
                         if (finish)
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Left, start);
                         }
                         canvasStart.DrawLine((int)which.X, (int)which.Y, 1195, (int)which.Y, paint);
-                        which.X = 1195;
+                        which.X = 373;
                         break;
                     }
-                case 1250:
+                case 390:
                     {
                         if (finish)
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Left, start);
                         }
-                        canvasStart.DrawLine((int)which.X, (int)which.Y, 1305, (int)which.Y, paint);
-                        which.X = 1305;
+                        canvasStart.DrawLine((int)which.X, (int)which.Y, 410, (int)which.Y, paint);
+                        which.X = 410;
                         break;
                     }
-                case 1370:
+                case 428:
                     {
                         if (finish)
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Right, start);
                         }
-                        canvasStart.DrawLine((int)which.X, (int)which.Y, 1305, (int)which.Y, paint);
-                        which.X = 1305;
+                        canvasStart.DrawLine((int)which.X, (int)which.Y, 410, (int)which.Y, paint);
+                        which.X = 410;
                         break;
                     }
-                case 1830:
+                case 573:
                     {
                         if (finish)
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Left, start);
                         }
-                        canvasStart.DrawLine((int)which.X, (int)which.Y, 1880, (int)which.Y, paint);
-                        which.X = 1880;
+                        canvasStart.DrawLine((int)which.X, (int)which.Y, 589, (int)which.Y, paint);
+                        which.X = 589;
                         break;
                     }
-                case 1935:
+                case 605:
                     {
                         if (finish)
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Right, start);
                         }
-                        canvasStart.DrawLine((int)which.X, (int)which.Y, 1880, (int)which.Y, paint);
-                        which.X = 1880;
+                        canvasStart.DrawLine((int)which.X, (int)which.Y, 589, (int)which.Y, paint);
+                        which.X = 589;
                         break;
                     }
                 default:
@@ -224,58 +223,56 @@ namespace NawigatorB34.Android
             //schody u dołu  Y 110
             switch ((int)which.Y)
             {
-                case 110:
+                case 35:
                     {
-                        canvasStart.DrawLine((int)which.X, (int)which.Y, (int)which.X, 380, paint);
-                        which.Y = 380;
+                        canvasStart.DrawLine((int)which.X, (int)which.Y, (int)which.X, 116, paint);
+                        which.Y = 116;
                         break;
                     }
-                case 295:
-                case 300:
+                case 93:
                     {
                         if (finish)
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Up, start);
                         }
-                        canvasStart.DrawLine((int)which.X, (int)which.Y, (int)which.X, 380, paint);
-                        which.Y = 380;
+                        canvasStart.DrawLine((int)which.X, (int)which.Y, (int)which.X, 116, paint);
+                        which.Y = 116;
                         break;
                     }
-                case 450:
+                case 140:
                     {
                         if (finish)
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Down, start);
                         }
-                        canvasStart.DrawLine((int)which.X, (int)which.Y, (int)which.X, 380, paint);
-                        which.Y = 380;
+                        canvasStart.DrawLine((int)which.X, (int)which.Y, (int)which.X, 116, paint);
+                        which.Y = 116;
                         break;
                     }
-                case 905:
+                case 283:
                     {
                         if (finish)
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Up, start);
                         }
-                        canvasStart.DrawLine((int)which.X, (int)which.Y, (int)which.X, 990, paint);
-                        which.Y = 990;
+                        canvasStart.DrawLine((int)which.X, (int)which.Y, (int)which.X, 306, paint);
+                        which.Y = 306;
                         break;
                     }
-                case 1055:
-                case 1060:
+                case 330:
                     {
                         if (finish)
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Down, start);
                         }
-                        canvasStart.DrawLine((int)which.X, (int)which.Y, (int)which.X, 990, paint);
-                        which.Y = 990;
+                        canvasStart.DrawLine((int)which.X, (int)which.Y, (int)which.X, 306, paint);
+                        which.Y = 306;
                         break;
                     }
-                case 1250:
+                case 390:
                     {
-                        canvasStart.DrawLine((int)which.X, (int)which.Y, (int)which.X, 990, paint);
-                        which.Y = 990;
+                        canvasStart.DrawLine((int)which.X, (int)which.Y, (int)which.X, 306, paint);
+                        which.Y = 306;
                         break;
                     }
                 default:
@@ -289,35 +286,35 @@ namespace NawigatorB34.Android
             DrawPathFromRoomToCorridor(roomStart);
             DrawPathFromRoomToCorridor(roomFinish, true, false);
 
-            //SDD   1110    1250    schody na dole na dół
-            //SDU   930     1250    schody na dole do góry
-            //SUU   1110    110     schody na górze do góry
-            //SUD   930     110     schody na górze na dół 
+            //SDD   347    390    schody na dole na dół
+            //SDU   291    390    schody na dole do góry
+            //SUU   347    35     schody na górze do góry
+            //SUD   291    35     schody na górze na dół 
 
             if (roomStart.Floor - roomFinish.Floor < 0)
             {//w dół
-                if (roomStart.Y > 685)
-                {//wprowadzić sztywno schody
-                    stairsStart = new Room(roomStart.Floor, "SDU", 930, 1250);
-                    stairsFinish = new Room(roomFinish.Floor, "SDD", 1110, 1250);
+                if (roomStart.Y > 208)
+                {
+                    stairsStart = new Room(roomStart.Floor, "SDU", 291, 390);
+                    stairsFinish = new Room(roomFinish.Floor, "SDD", 347, 390);
                 }
                 else
                 {
-                    stairsStart = new Room(roomStart.Floor, "SUU", 1110, 110);
-                    stairsFinish = new Room(roomFinish.Floor, "SUD", 930, 110);
+                    stairsStart = new Room(roomStart.Floor, "SUU", 347, 35);
+                    stairsFinish = new Room(roomFinish.Floor, "SUD", 291, 35);
                 }
             }
             else
             {//w górę
-                if (roomStart.Y > 685)
+                if (roomStart.Y > 208)
                 {
-                    stairsStart = new Room(roomStart.Floor, "SDD", 1110, 1250);
-                    stairsFinish = new Room(roomFinish.Floor, "SDU", 930, 1250);
+                    stairsStart = new Room(roomStart.Floor, "SDD", 347, 390);
+                    stairsFinish = new Room(roomFinish.Floor, "SDU", 291, 390);
                 }
                 else
                 {
-                    stairsStart = new Room(roomStart.Floor, "SUD", 930, 110);
-                    stairsFinish = new Room(roomFinish.Floor, "SUU", 1110, 110);
+                    stairsStart = new Room(roomStart.Floor, "SUD", 291, 35);
+                    stairsFinish = new Room(roomFinish.Floor, "SUU", 347, 35);
                 }
             }
             DrawPathFromRoomToCorridor(stairsStart, true);
@@ -326,39 +323,27 @@ namespace NawigatorB34.Android
 
         public void DrawPathStartHorizontal(Room roomStart, Room roomFinish, bool start = true)
         {
-            //Canvas tempCanvas;
-            //if (start)
-            //{
-            //    tempCanvas = new Canvas(bmpFloorStart);
-            //    tempCanvas.DrawBitmap(bmpFloorStart, new Matrix(), null);
-            //}
-            //else
-            //{
-            //    tempCanvas = new Canvas(bmpFloorFinish);
-            //    tempCanvas.DrawBitmap(bmpFloorFinish, new Matrix(), null);
-            //}
-
             int newY = 0;
-            if (Math.Abs(roomFinish.Y - roomStart.Y) < 610 &&
+            if (Math.Abs(roomFinish.Y - roomStart.Y) < 200 &&
                 Math.Abs(roomFinish.X - roomStart.X) == 0)
             {
                 return;
             }
-            else if (roomStart.Y <= 685 && roomFinish.Y <= 685)
+            else if (roomStart.Y <= 208 && roomFinish.Y <= 208)
             {
-                newY = 380;
+                newY = 116;
             }
-            else if (roomStart.Y > 685 && roomFinish.Y > 685)
+            else if (roomStart.Y > 208 && roomFinish.Y > 208)
             {
-                newY = 990;
+                newY = 306;
             }
-            else if (roomStart.Y <= 685 && roomFinish.Y > 685)
+            else if (roomStart.Y <= 208 && roomFinish.Y > 208)
             {
-                newY = 990;
+                newY = 306;
             }
-            else if (roomStart.Y > 685 && roomFinish.Y <= 685)
+            else if (roomStart.Y > 208 && roomFinish.Y <= 208)
             {
-                newY = 380;
+                newY = 116;
             }
             canvasStart.DrawLine((int)roomStart.X, (int)roomStart.Y, (int)roomStart.X, newY, paint);
             canvasStart.DrawLine((int)roomFinish.X, (int)roomFinish.Y, (int)roomFinish.X, newY, paint);
@@ -371,13 +356,13 @@ namespace NawigatorB34.Android
             using (Canvas tempCanvas = start ? canvasStart : canvasFinish)
             {
                 int newX = 0;
-                //165, 735, 1305, 1880
-                //  450, 1020, 1590
+                //51, 230, 410, 589
+                //  135, 315, 506
                 //  600,  570,  575
-                //A       X <= 450
-                //B 450 < X <= 1020
-                //C 1020< X <= 1590
-                //D 1590< X
+                //A       X <= 135
+                //B 135 < X <= 315
+                //C 315< X <= 506
+                //D 506< X
 
                 if (Math.Abs(roomFinish.X - roomStart.X) < 575 &&
                     Math.Abs(roomFinish.Y - roomStart.Y) == 0)
@@ -385,88 +370,88 @@ namespace NawigatorB34.Android
                     return;
                 }
                 //↓roomStart jest w przedziale A
-                else if (roomStart.X <= 450 &&//AA
-                    roomFinish.X <= 450)
+                else if (roomStart.X <= 135 &&//AA
+                    roomFinish.X <= 135)
                 {
-                    newX = 165;
+                    newX = 51;
                 }
-                else if (roomStart.X <= 450 &&//AB
-                         roomFinish.X > 450 && roomFinish.X <= 1020)
+                else if (roomStart.X <= 135 &&//AB
+                         roomFinish.X > 135 && roomFinish.X <= 315)
                 {
-                    newX = 735;
+                    newX = 230;
                 }
-                else if (roomStart.X <= 450 &&//AC
-                         roomFinish.X > 1020 && roomFinish.X <= 1590)
+                else if (roomStart.X <= 135 &&//AC
+                         roomFinish.X > 315 && roomFinish.X <= 506)
                 {
-                    newX = 1305;
+                    newX = 410;
                 }
-                else if (roomStart.X <= 450 &&//AD
-                         roomFinish.X > 1590)
+                else if (roomStart.X <= 135 &&//AD
+                         roomFinish.X > 506)
                 {
-                    newX = 1880;
+                    newX = 589;
                 }
                 //↓roomStart jest w przedziale B
-                else if (roomStart.X > 450 && roomStart.X <= 1020 &&//BA
-                         roomFinish.X <= 450)
+                else if (roomStart.X > 135 && roomStart.X <= 315 &&//BA
+                         roomFinish.X <= 135)
                 {
-                    newX = 165;
+                    newX = 51;
                 }
-                else if (roomStart.X > 450 && roomStart.X <= 1020 &&//BB
-                        roomFinish.X > 450 && roomFinish.X <= 1020)
+                else if (roomStart.X > 135 && roomStart.X <= 315 &&//BB
+                        roomFinish.X > 135 && roomFinish.X <= 315)
                 {
-                    newX = 735;
+                    newX = 230;
                 }
-                else if (roomStart.X > 450 && roomStart.X <= 1020 &&//BC
-                         roomFinish.X > 1020 && roomFinish.X <= 1590)
+                else if (roomStart.X > 135 && roomStart.X <= 315 &&//BC
+                         roomFinish.X > 315 && roomFinish.X <= 506)
                 {
-                    newX = 1305;
+                    newX = 410;
                 }
-                else if (roomStart.X > 450 && roomStart.X <= 1020 &&//BD
-                         roomFinish.X > 1590)
+                else if (roomStart.X > 135 && roomStart.X <= 315 &&//BD
+                         roomFinish.X > 506)
                 {
-                    newX = 1880;
+                    newX = 589;
                 }
                 //↓roomStart jest w przedziale C
-                else if (roomStart.X > 1020 && roomStart.X <= 1590 &&//CA
-                         roomFinish.X <= 450)
+                else if (roomStart.X > 315 && roomStart.X <= 506 &&//CA
+                         roomFinish.X <= 135)
                 {
-                    newX = 165;
+                    newX = 51;
                 }
-                else if (roomStart.X > 1020 && roomStart.X <= 1590 &&//CB
-                         roomFinish.X > 450 && roomFinish.X <= 1000)
+                else if (roomStart.X > 315 && roomStart.X <= 506 &&//CB
+                         roomFinish.X > 135 && roomFinish.X <= 320)
                 {
-                    newX = 735;
+                    newX = 230;
                 }
-                else if (roomStart.X > 1020 && roomStart.X <= 1590 &&//CC
-                         roomFinish.X > 1000 && roomFinish.X <= 1590)
+                else if (roomStart.X > 315 && roomStart.X <= 506 &&//CC
+                         roomFinish.X > 320 && roomFinish.X <= 506)
                 {
-                    newX = 1305;
+                    newX = 410;
                 }
-                else if (roomStart.X > 1020 && roomStart.X <= 1590 &&//CD
-                         roomFinish.X > 1590)
+                else if (roomStart.X > 315 && roomStart.X <= 506 &&//CD
+                         roomFinish.X > 506)
                 {
-                    newX = 1880;
+                    newX = 589;
                 }
                 //↓roomStart jest w przedziale D
-                else if (roomStart.X > 1590 &&//DA
-                         roomFinish.X <= 450)
+                else if (roomStart.X > 506 &&//DA
+                         roomFinish.X <= 135)
                 {
-                    newX = 165;
+                    newX = 51;
                 }
-                else if (roomStart.X > 1590 &&//DB
-                         roomFinish.X > 450 && roomFinish.X <= 1000)
+                else if (roomStart.X > 506 &&//DB
+                         roomFinish.X > 135 && roomFinish.X <= 320)
                 {
-                    newX = 735;
+                    newX = 230;
                 }
-                else if (roomStart.X > 1590 &&//DC
-                         roomFinish.X > 1000 && roomFinish.X <= 1590)
+                else if (roomStart.X > 506 &&//DC
+                         roomFinish.X > 320 && roomFinish.X <= 506)
                 {
-                    newX = 1305;
+                    newX = 410;
                 }
-                else if (roomStart.X > 1590 &&//DD
-                         roomFinish.X > 1590)
+                else if (roomStart.X > 506 &&//DD
+                         roomFinish.X > 506)
                 {
-                    newX = 1880;
+                    newX = 589;
                 }
                 tempCanvas.DrawLine((int)roomStart.X, (int)roomStart.Y, newX, (int)roomStart.Y, paint);
                 tempCanvas.DrawLine((int)roomFinish.X, (int)roomFinish.Y, newX, (int)roomFinish.Y, paint);
@@ -610,16 +595,16 @@ namespace NawigatorB34.Android
                         DrawPathFromRoomToCorridor(roomStart);
                         DrawPathFromRoomToCorridor(roomFinish, true);
 
-                        if ((roomStart.X == 165 && roomFinish.X == 165) ||
-                            (roomStart.X == 735 && roomFinish.X == 735) ||
-                            (roomStart.X == 1305 && roomFinish.X == 1305) ||
-                            (roomStart.X == 1880 && roomFinish.X == 1880) ||
-                            (roomStart.Y == 380 && roomFinish.Y == 380) ||
-                            (roomStart.Y == 990 && roomFinish.Y == 990))
+                        if ((roomStart.X == 51 && roomFinish.X == 51) ||
+                            (roomStart.X == 230 && roomFinish.X == 230) ||
+                            (roomStart.X == 410 && roomFinish.X == 410) ||
+                            (roomStart.X == 589 && roomFinish.X == 589) ||
+                            (roomStart.Y == 116 && roomFinish.Y == 116) ||
+                            (roomStart.Y == 306 && roomFinish.Y == 306))
                         {
                             //Nic nie trzeba robić :D
                         }
-                        else if (roomStart.Y > 380 && roomStart.Y < 990)
+                        else if (roomStart.Y > 116 && roomStart.Y < 306)
                         {
                             DrawPathStartHorizontal(roomStart, roomFinish);
                         }
