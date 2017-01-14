@@ -279,7 +279,7 @@ __pycache__/
 # tools/
 
 # pliki wylaczone przez nas (lokalne)
-/NawigatorB34/.vs/Nawigator_SGGW_B34/v14/.suo
+/.vs/Nawigator_SGGW_B34/v14/.suo
 /NawigatorB34/NawigatorB34.Windows/obj/Debug/App.g.i.cs
 /NawigatorB34/NawigatorB34.Windows/obj/Debug/MainPage.g.i.cs
 /NawigatorB34/NawigatorB34.Windows/obj/Debug/NotesPage.g.i.cs
