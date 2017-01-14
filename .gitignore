@@ -278,4 +278,18 @@ __pycache__/
 # Cake - Uncomment if you are using it
 # tools/
 
+# pliki wylaczone przez nas (lokalne)
+/NawigatorB34/.vs/Nawigator_SGGW_B34/v14/.suo
+/NawigatorB34/NawigatorB34.Windows/obj/Debug/App.g.i.cs
+/NawigatorB34/NawigatorB34.Windows/obj/Debug/MainPage.g.i.cs
+/NawigatorB34/NawigatorB34.Windows/obj/Debug/NotesPage.g.i.cs
+/NawigatorB34/NawigatorB34.Windows/obj/Debug/SettingsPage.g.i.cs
+/NawigatorB34/NawigatorB34.Windows/obj/Debug/XamlSaveStateFile.xml
+/NawigatorB34/NawigatorB34.WindowsPhone/obj/Debug/App.g.i.cs
+/NawigatorB34/NawigatorB34.WindowsPhone/obj/Debug/MainPage.g.i.cs
+/NawigatorB34/NawigatorB34.WindowsPhone/obj/Debug/NotesPage.g.i.cs
+/NawigatorB34/NawigatorB34.WindowsPhone/obj/Debug/SettingsPage.g.i.cs
+/NawigatorB34/NawigatorB34.WindowsPhone/obj/Debug/XamlSaveStateFile.xml
+
+
 # End of https://www.gitignore.io/api/csharp
