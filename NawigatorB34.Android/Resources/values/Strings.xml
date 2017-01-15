@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="ApplicationName">NawigatorB34.Android</string>
+  <string name="ApplicationName">Nawigator SGGW B34</string>
   <string name="floor_prompt">Wybierz piętro</string>
   <string-array name="floor_array">
     <item>3</item>

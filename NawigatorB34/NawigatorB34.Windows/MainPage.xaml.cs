@@ -80,18 +80,20 @@ namespace Nawigator_SGGW_B34
                     {
                         Name = room.ID.ToString(),
                         Content = room.Name.Replace("A", "Aula ")
-                                            .Replace("BW", " Łazienka damska").Replace("BM", " Łazienka męska")
-                                            .Replace("SDD", "Schody w dół od zielonej").Replace("SDU", "Schody w górę od zielonej")
-                                            .Replace("SUD", "Schody w dół od żółtej").Replace("SUU", "Schody w górę od żółtej"),
+                                           .Replace("BW", " Łazienka damska")
+                                           .Replace("BM", " Łazienka męska")
+                                           .Replace("F", " Bufet")
+                                           .Replace("S", " Apteczka"),
                         FontSize = App.FontSize
                     });
                     comboBox2.Items.Add(new ComboBoxItem()
                     {
                         Name = room.ID.ToString(),
                         Content = room.Name.Replace("A", "Aula ")
-                                            .Replace("BW", " Łazienka damska").Replace("BM", " Łazienka męska")
-                                            .Replace("SDD", "Schody w dół od zielonej").Replace("SDU", "Schody w górę od zielonej")
-                                            .Replace("SUD", "Schody w dół od żółtej").Replace("SUU", "Schody w górę od żółtej"),
+                                           .Replace("BW", " Łazienka damska")
+                                           .Replace("BM", " Łazienka męska")
+                                           .Replace("F", " Bufet")
+                                           .Replace("S", " Apteczka"),
                         FontSize = App.FontSize
                     });
                 }
@@ -169,19 +171,19 @@ namespace Nawigator_SGGW_B34
                     int floorDifference = roomStart.Floor - roomFinish.Floor;
                     if (floorDifference == -1)
                     {
-                        textBlock3.Text = "Piętro wyżej";
+                        textBlock3.Text = "↓ Piętro wyżej ↓";
                     }
                     else if (floorDifference < 0)
                     {
-                        textBlock3.Text = $"{-floorDifference} pięter wyżej";
+                        textBlock3.Text = $"↓ {-floorDifference} piętra wyżej ↓";
                     }
                     else if (floorDifference == 1)
                     {
-                        textBlock3.Text = "Piętro niżej";
+                        textBlock3.Text = "↓ Piętro niżej ↓";
                     }
                     else
                     {
-                        textBlock3.Text = $"{floorDifference} pięter niżej";
+                        textBlock3.Text = $"↓ {floorDifference} piętra niżej ↓";
                     }
                     textBlock3.Visibility = Visibility.Visible;
                 }

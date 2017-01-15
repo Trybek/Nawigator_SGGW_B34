@@ -80,12 +80,12 @@ namespace NawigatorB34.Android
 
             using (SeekBar seekBarFontSize = FindViewById<SeekBar>(Resource.Id.seekBarFontSize))
             {
-                seekBarFontSize.SetProgress(fontSize, false);
+                seekBarFontSize.Progress = fontSize;
                 seekBarFontSize.StopTrackingTouch += SeekBarFontSize_StopTrackingTouch;
             }
             using (SeekBar seekBarTimerNotifications = FindViewById<SeekBar>(Resource.Id.seekBarTimer))
             {
-                seekBarTimerNotifications.SetProgress(timerNotifications, false);
+                seekBarTimerNotifications.Progress = timerNotifications;
                 seekBarTimerNotifications.StopTrackingTouch += SeekBarTimerNotifications_StopTrackingTouch; ;
             }
 

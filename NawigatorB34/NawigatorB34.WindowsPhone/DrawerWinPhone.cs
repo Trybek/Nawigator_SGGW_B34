@@ -166,7 +166,7 @@ namespace Nawigator_SGGW_B34
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Right, start);
                         }
-                        floorMap.DrawLineAa((int)which.X, (int)which.Y, 850, (int)which.Y, Color.FromArgb(255, 0, 0, 0), 5);
+                        floorMap.DrawLineAa((int)which.X, (int)which.Y, 265, (int)which.Y, Color.FromArgb(255, 0, 0, 0), 5);
                         which.X = 265;
                         break;
                     }
@@ -176,7 +176,7 @@ namespace Nawigator_SGGW_B34
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Left, start);
                         }
-                        floorMap.DrawLineAa((int)which.X, (int)which.Y, 1195, (int)which.Y, Color.FromArgb(255, 0, 0, 0), 5);
+                        floorMap.DrawLineAa((int)which.X, (int)which.Y, 375, (int)which.Y, Color.FromArgb(255, 0, 0, 0), 5);
                         which.X = 375;
                         break;
                     }

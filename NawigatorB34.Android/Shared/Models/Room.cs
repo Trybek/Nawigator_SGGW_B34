@@ -10,7 +10,7 @@ namespace NawigatorB34.Android.Models
         [NotNull]
         public int Floor { get; set; }
 
-        [MaxLength(5), NotNull]//Aula 4 == A4, łazienka damska == BW, łazienka męska == BM, sala 3/84 == 3/84
+        [MaxLength(8), NotNull]//Aula 4 == A4, łazienka damska == BW, łazienka męska == BM, sala 3/84 == 3/84
         public string Name { get; set; }
 
         [NotNull]

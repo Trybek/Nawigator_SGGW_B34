@@ -88,11 +88,11 @@ namespace NawigatorB34.Android
                 textViewTo.SetTextSize(ComplexUnitType.Mm, fontSize);
             }
 
-            using (Button settings = FindViewById<Button>(Resource.Id.buttonNotes)) //ustawienia
+            using (Button settings = FindViewById<Button>(Resource.Id.buttonSettings)) //ustawienia
             {
                 settings.SetTextSize(ComplexUnitType.Mm, fontSize);
             }
-            using (Button notes = FindViewById<Button>(Resource.Id.buttonSettings)) //notatki
+            using (Button notes = FindViewById<Button>(Resource.Id.buttonNotes)) //notatki
             {
                 notes.SetTextSize(ComplexUnitType.Mm, fontSize);
             }
@@ -112,7 +112,11 @@ namespace NawigatorB34.Android
             {
                 if (readRoomsOnFloor.Contains(item.Floor.ToString()))
                 {
-                    roomsName.Add(item.Name);
+                    roomsName.Add(item.Name.Replace("A", "Aula ")
+                                           .Replace("BW", " Łazienka damska")
+                                           .Replace("BM", " Łazienka męska")
+                                           .Replace("F", " Bufet")
+                                           .Replace("S", " Apteczka"));
                     roomsID.Add(item.ID);
                 }
             }
@@ -202,19 +206,19 @@ namespace NawigatorB34.Android
                                     int floorDifference = start.Floor - finish.Floor;
                                     if (floorDifference == -1)
                                     {
-                                        text.Text = "Piętro wyżej";
+                                        text.Text = "↓ Piętro wyżej ↓";
                                     }
                                     else if (floorDifference < 0)
                                     {
-                                        text.Text = $"{-floorDifference} pięter wyżej";
+                                        text.Text = $"↓ {-floorDifference} piętra wyżej ↓";
                                     }
                                     else if (floorDifference == 1)
                                     {
-                                        text.Text = "Piętro niżej";
+                                        text.Text = "↓ Piętro niżej ↓";
                                     }
                                     else
                                     {
-                                        text.Text = $"{floorDifference} pięter niżej";
+                                        text.Text = $"↓ {floorDifference} piętra niżej ↓";
                                     }
                                 }
                             }
