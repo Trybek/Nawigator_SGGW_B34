@@ -38,16 +38,14 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Text="Nawigator SGGW Budynek 34" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
             <TextBlock Text="Notatki" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
         </StackPanel>
 
-        <!--TODO: Content should be placed within the following grid-->
         <StackPanel Grid.Row="1" x:Name="ContentRoot" Margin="10,0">
             <Button Name="b3" Click="b3_Click" Height="94" Content="Pokaż powiadomienie" Width="211" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <Grid x:Name="GridAddNote" Visibility="Visible">
+            <Grid x:Name="GridAddNote" Visibility="Collapsed">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>

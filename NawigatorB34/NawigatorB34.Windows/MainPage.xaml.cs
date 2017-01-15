@@ -67,6 +67,22 @@ namespace Nawigator_SGGW_B34
 
         private void MakeMainPage()
         {
+            foreach (var item in GridContent.Children)
+            {
+                if (item is TextBlock)
+                {
+                    (item as TextBlock).FontSize = App.FontSize;
+                }
+                else if (item is ComboBox)
+                {
+                    (item as ComboBox).FontSize = App.FontSize;
+                    foreach (var items in (item as ComboBox).Items)
+                    {
+                        (items as ComboBoxItem).FontSize = App.FontSize;
+                    }
+                }
+            }
+
             comboBox1.Items.Clear();
             comboBox2.Items.Clear();
 

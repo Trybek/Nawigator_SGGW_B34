@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Util;
 using Android.Widget;
 using NawigatorB34.Android.Models;
+using System.Globalization;
 
 namespace NawigatorB34.Android
 {
@@ -171,7 +172,7 @@ namespace NawigatorB34.Android
                 using (EditText timeEditText = FindViewById<EditText>(Resource.Id.editTextTime))
                 {
                     DateTime date;
-                    if (!DateTime.TryParse(dateEditText.Text + " " + timeEditText.Text, out date))
+                    if (!DateTime.TryParseExact(dateEditText.Text + " " + timeEditText.Text, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
                     {
                         errors += "Nieprawid³owa data lub godzina powiadomienia.\n";
                     }
@@ -180,49 +181,49 @@ namespace NawigatorB34.Android
                         note.TimeOfNote = date.ToString("dd-MM-yyyy HH:mm:ss");
                     }
                 }
-            }
-            using (Spinner spinner = FindViewById<Spinner>(Resource.Id.spinnerRoomID))
-            {
-                note.RoomID = int.Parse(spinner.SelectedItem.ToString());
-            }
-
-            using (Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner1))
-            {
-                note.RoomName = spinner.SelectedItem.ToString();
-            }
-            using (var editText = FindViewById<EditText>(Resource.Id.editTextOfNote))
-            {
-                if (string.IsNullOrEmpty(editText.Text))
+                using (Spinner spinner = FindViewById<Spinner>(Resource.Id.spinnerRoomID))
                 {
-                    errors += "Nie podano opisu notatki.\n";
+                    note.RoomID = int.Parse(spinner.SelectedItem.ToString());
                 }
-                else
+
+                using (Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner1))
                 {
-                    note.TextOfNote = editText.Text;
+                    note.RoomName = spinner.SelectedItem.ToString();
                 }
-            }
-            if (!string.IsNullOrEmpty(errors))
-            {
-                AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                alert.SetTitle("B³¹d");
-                alert.SetMessage(errors);
-                Dialog dialog = alert.Create();
-                dialog.Show();
-                return;
-            }
-
-            notifications.AddNotification(databaseHelper.FindRoomByID(note.RoomID), DateTime.Parse(note.TimeOfNote));
-            databaseHelper.InsertNote(note);
-
-            using (var layout = Window.DecorView.FindViewById<LinearLayout>(Resource.Id.linearLayout1))
-            {
-                using (TextView txt = new TextView(this))
+                using (var editText = FindViewById<EditText>(Resource.Id.editTextOfNote))
                 {
-                    txt.ContentDescription = note.ID.ToString(); ;
-                    txt.SetTextSize(ComplexUnitType.Mm, 16);
-                    txt.SetText($"{note.TextOfNote}\nW dniu: {note.TimeOfNote/*.Insert(10, " o godzinie ")*/} w {note.RoomName}\n", TextView.BufferType.Normal);
-                    txt.Click += NoteTextView_Click;
-                    layout.AddView(txt, 1);
+                    if (string.IsNullOrEmpty(editText.Text))
+                    {
+                        errors += "Nie podano opisu notatki.\n";
+                    }
+                    else
+                    {
+                        note.TextOfNote = editText.Text;
+                    }
+                }
+                if (!string.IsNullOrEmpty(errors))
+                {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                    alert.SetTitle("B³¹d");
+                    alert.SetMessage(errors);
+                    Dialog dialog = alert.Create();
+                    dialog.Show();
+                    return;
+                }
+
+                notifications.AddNotification(databaseHelper.FindRoomByID(note.RoomID), DateTime.ParseExact(note.TimeOfNote, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture));
+                databaseHelper.InsertNote(note);
+
+                using (var layout = Window.DecorView.FindViewById<LinearLayout>(Resource.Id.linearLayout1))
+                {
+                    using (TextView txt = new TextView(this))
+                    {
+                        txt.ContentDescription = note.ID.ToString(); ;
+                        txt.SetTextSize(ComplexUnitType.Mm, 16);
+                        txt.SetText($"{note.TextOfNote}\nW dniu: {note.TimeOfNote/*.Insert(10, " o godzinie ")*/} w {note.RoomName}\n", TextView.BufferType.Normal);
+                        txt.Click += NoteTextView_Click;
+                        layout.AddView(txt, 1);
+                    }
                 }
             }
         }

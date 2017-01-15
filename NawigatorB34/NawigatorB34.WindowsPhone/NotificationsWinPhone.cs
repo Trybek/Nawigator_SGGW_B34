@@ -23,9 +23,12 @@ namespace Nawigator_SGGW_B34
                 var toastElement = ((XmlElement)toastXml.SelectSingleNode("/toast"));
                 toastElement.SetAttribute("launch", "toast://" + room.ID);
                 string nameRoom = room.Name.Replace("A", "Aula ")
-                                           .Replace("BW", " Łazienka damska").Replace("BM", " Łazienka męska")
-                                           .Replace("SDD", "Schody w dół od zielonej").Replace("SDU", "Schody w górę od zielonej")
-                                           .Replace("SUD", "Schody w dół od żółtej").Replace("SUU", "Schody w górę od żółtej");
+                                           .Replace("BW", " Łazienka damska")
+                                           .Replace("BM", " Łazienka męska")
+                                           .Replace("F", " Bufet")
+                                           .Replace("S", " Apteczka")
+                                           .Replace("CY", "Szatnia żółta")
+                                           .Replace("CG", "Szatnia zielona");
 
                 toastText[0].AppendChild(toastXml.CreateTextNode($"Zajęcia za {App.TimerNotifications} min w sali {nameRoom}"));       //Heading text of Notification   
                 toastText[1].AppendChild(toastXml.CreateTextNode($"Chcesz zobaczyć mapę?"));    //Body text of Notification    
@@ -71,10 +74,12 @@ namespace Nawigator_SGGW_B34
                 toastElement.SetAttribute("launch", "toast://" + room.ID);
 
                 string nameRoom = room.Name.Replace("A", "Aula ")
-                                           .Replace("BW", " Łazienka damska").Replace("BM", " Łazienka męska")
-                                           .Replace("SDD", "Schody w dół od zielonej").Replace("SDU", "Schody w górę od zielonej")
-                                           .Replace("SUD", "Schody w dół od żółtej").Replace("SUU", "Schody w górę od żółtej");
-
+                                           .Replace("BW", " Łazienka damska")
+                                           .Replace("BM", " Łazienka męska")
+                                           .Replace("F", " Bufet")
+                                           .Replace("S", " Apteczka")
+                                           .Replace("CY", "Szatnia żółta")
+                                           .Replace("CG", "Szatnia zielona");
 
                 toastText[0].AppendChild(toastXml.CreateTextNode($"Zajęcia za {App.TimerNotifications} min w sali {nameRoom}"));       //Heading text of Notification   
                 toastText[1].AppendChild(toastXml.CreateTextNode($"Chcesz zobaczyć mapę?"));    //Body text of Notification    

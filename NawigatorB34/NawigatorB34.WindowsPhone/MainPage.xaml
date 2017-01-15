@@ -24,7 +24,7 @@
             <TextBlock Text="Nawigacja" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
         </StackPanel>
         <ScrollViewer Grid.Row="1">
-            <Grid ScrollViewer.HorizontalScrollBarVisibility="Visible">
+            <Grid x:Name="GridContent" ScrollViewer.HorizontalScrollBarVisibility="Visible">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -190,25 +191,37 @@ namespace Nawigator_SGGW_B34
                 notifications.ShowMessage(databaseHelper.FindRoomByID(1));
             }
         }
-        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        private async void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            Note note = new Note();
-            note.RoomID = int.Parse((comboBox1.SelectedItem as ComboBoxItem).Name);
-            note.RoomName = (comboBox1.SelectedItem as ComboBoxItem).Content.ToString();
-            note.TextOfNote = textBox.Text;
-            note.TimeOfNote = datePicker.Date.ToString("dd-MM-yyyy") + " " + timePicker.Time.ToString(@"hh\:mm");
-            databaseHelper.InsertNote(note);
-
-            TextBlock text = new TextBlock()
+            if (comboBox1.SelectedIndex != -1)
             {
-                FontSize = App.FontSize,
-                Text = $"{note.TextOfNote}\nO godzinie:{note.TimeOfNote} w {note.RoomName}",
-                Name = "item" + note.ID
-            };
-            text.Tapped += Text_Tapped;
-            ContentRoot.Children.Insert(0, text);
-            notifications.AddNotification(databaseHelper.FindRoomByID(note.RoomID), DateTime.Parse(note.TimeOfNote));
-            GridAddNote.Visibility = Visibility.Collapsed;
+                Note note = new Note();
+                note.RoomID = int.Parse((comboBox1.SelectedItem as ComboBoxItem).Name);
+                note.RoomName = (comboBox1.SelectedItem as ComboBoxItem).Content.ToString();
+                note.TextOfNote = textBox.Text;
+                note.TimeOfNote = datePicker.Date.ToString("dd-MM-yyyy") + " " + timePicker.Time.ToString(@"hh\:mm");
+                databaseHelper.InsertNote(note);
+
+                TextBlock text = new TextBlock()
+                {
+                    FontSize = App.FontSize,
+                    Text = $"{note.TextOfNote}\nO godzinie:{note.TimeOfNote} w {note.RoomName}",
+                    Name = "item" + note.ID
+                };
+                text.Tapped += Text_Tapped;
+                ContentRoot.Children.Insert(0, text);
+                DateTime date = DateTime.ParseExact(note.TimeOfNote, @"dd-MM-yyyy HH\:mm", CultureInfo.InvariantCulture);
+                if (date >= DateTime.Now)
+                {
+                    notifications.AddNotification(databaseHelper.FindRoomByID(note.RoomID), date);
+                }
+                GridAddNote.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                MessageDialog message = new MessageDialog("Nie Wybrano sali");
+                await message.ShowAsync();
+            }
         }
 
         private void Text_Tapped(object sender, TappedRoutedEventArgs e)
