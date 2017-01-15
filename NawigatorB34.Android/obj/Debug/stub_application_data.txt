@@ -1,2 +1,0 @@
-android.app.Application
-NawigatorB34.Android.NawigatorB34.Android

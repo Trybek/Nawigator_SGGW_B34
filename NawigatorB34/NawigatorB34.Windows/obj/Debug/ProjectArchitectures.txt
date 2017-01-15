@@ -1,1 +1,0 @@
-c:\users\jogurt1\documents\visual studio 2015\Projects\NawigatorB34\NawigatorB34\NawigatorB34.Windows\NawigatorB34.Windows.csproj;neutral
