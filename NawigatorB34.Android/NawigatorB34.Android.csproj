@@ -104,36 +104,45 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\floor0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\floor1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\floor2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\floor3.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\floorM1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\layout\TextViewItem.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\PopupMenu.xml">
       <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="obj\Debug\res\drawable-nodpi\floor0.png" />
+    <Content Include="obj\Debug\res\drawable-nodpi\floor1.png" />
+    <Content Include="obj\Debug\res\drawable-nodpi\floor2.png" />
+    <Content Include="obj\Debug\res\drawable-nodpi\floor3.png" />
+    <Content Include="obj\Debug\res\drawable-nodpi\floorm1.png" />
+    <Content Include="obj\Debug\res\drawable\floor0.png" />
+    <Content Include="obj\Debug\res\drawable\floor1.png" />
+    <Content Include="obj\Debug\res\drawable\floor2.png" />
+    <Content Include="obj\Debug\res\drawable\floorm1.png" />
+    <Content Include="obj\Debug\res\drawable\icon.png" />
+    <Content Include="obj\Debug\res\layout\main.xml" />
+    <Content Include="obj\Debug\res\layout\notespage.xml" />
+    <Content Include="obj\Debug\res\layout\popupmenu.xml" />
+    <Content Include="obj\Debug\res\layout\popupwindow.xml" />
+    <Content Include="obj\Debug\res\layout\settingspage.xml" />
+    <Content Include="obj\Debug\res\layout\textviewitem.xml" />
+    <Content Include="obj\Debug\res\values\strings.xml" />
+    <AndroidResource Include="Resources\drawable-nodpi\floor0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable-nodpi\floor1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable-nodpi\floor2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable-nodpi\floor3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable-nodpi\floorM1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

@@ -75,7 +75,9 @@ namespace Nawigator_SGGW_B34
                                            .Replace("BW", " Łazienka damska")
                                            .Replace("BM", " Łazienka męska")
                                            .Replace("F", " Bufet")
-                                           .Replace("S", " Apteczka"),
+                                           .Replace("S", " Apteczka")
+                                           .Replace("CY", "Szatnia żółta")
+                                           .Replace("CG", "Szatnia zielona"),
                         FontSize = App.FontSize
                     });
                     comboBox2.Items.Add(new ComboBoxItem()
@@ -85,7 +87,9 @@ namespace Nawigator_SGGW_B34
                                            .Replace("BW", " Łazienka damska")
                                            .Replace("BM", " Łazienka męska")
                                            .Replace("F", " Bufet")
-                                           .Replace("S", " Apteczka"),
+                                           .Replace("S", " Apteczka")
+                                           .Replace("CY", "Szatnia żółta")
+                                           .Replace("CG", "Szatnia zielona"),
                         FontSize = App.FontSize
                     });
                 }

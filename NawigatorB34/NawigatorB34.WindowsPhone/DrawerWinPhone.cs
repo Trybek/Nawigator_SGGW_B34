@@ -21,15 +21,7 @@ namespace Nawigator_SGGW_B34
         #region Draw Methods
         public void DrawArrow(int x, int y, EnumPosition position, bool start = true)
         {
-            WriteableBitmap floorMap;
-            if (start)
-            {
-                floorMap = writeableBmpFloorStart;
-            }
-            else
-            {
-                floorMap = writeableBmpFloorFinish;
-            }
+            WriteableBitmap floorMap = start ? writeableBmpFloorStart : writeableBmpFloorFinish;
 
             switch (position)
             {
@@ -107,17 +99,8 @@ namespace Nawigator_SGGW_B34
 
         public void DrawPathFromRoomToCorridor(Room which, bool finish = false, bool start = true)
         {
-            WriteableBitmap floorMap;
-            if (start)
-            {
-                floorMap = writeableBmpFloorStart;
-            }
-            else
-            {
-                floorMap = writeableBmpFloorFinish;
-            }
-            //schody do góry X 347 - rysuj do 1195
-            //schody na dół  X 291  - rysuj do 850
+            WriteableBitmap floorMap = start ? writeableBmpFloorStart : writeableBmpFloorFinish;
+
             switch ((int)which.X)
             {
                 case 35:
@@ -224,8 +207,6 @@ namespace Nawigator_SGGW_B34
                     break;
             }
 
-            //schody u góry  Y 390
-            //schody u dołu  Y 35
             switch ((int)which.Y)
             {
                 case 35:
@@ -328,15 +309,8 @@ namespace Nawigator_SGGW_B34
 
         public void DrawPathStartHorizontal(Room roomStart, Room roomFinish, bool start = true)
         {
-            WriteableBitmap floorMap;
-            if (start)
-            {
-                floorMap = writeableBmpFloorStart;
-            }
-            else
-            {
-                floorMap = writeableBmpFloorFinish;
-            }
+            WriteableBitmap floorMap = start ? writeableBmpFloorStart : writeableBmpFloorFinish;
+
             int newY = 0;
             if (Math.Abs(roomFinish.Y - roomStart.Y) < 200 &&
                 Math.Abs(roomFinish.X - roomStart.X) == 0)
@@ -367,15 +341,7 @@ namespace Nawigator_SGGW_B34
         }
         public void DrawPathStartVertical(Room roomStart, Room roomFinish, bool start = true)
         {
-            WriteableBitmap floorMap;
-            if (start)
-            {
-                floorMap = writeableBmpFloorStart;
-            }
-            else
-            {
-                floorMap = writeableBmpFloorFinish;
-            }
+            WriteableBitmap floorMap = start ? writeableBmpFloorStart : writeableBmpFloorFinish;
 
             int newX = 0;
             //51, 230, 410, 589

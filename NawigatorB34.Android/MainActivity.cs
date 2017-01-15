@@ -108,6 +108,8 @@ namespace NawigatorB34.Android
             List<Room> rooms = databaseHelper.ReadRooms();
             List<string> roomsName = new List<string>();
             List<int> roomsID = new List<int>();
+            roomsName.Add("Wybierz sale");
+            roomsID.Add(0);
             foreach (var item in rooms)
             {
                 if (readRoomsOnFloor.Contains(item.Floor.ToString()))
@@ -116,7 +118,9 @@ namespace NawigatorB34.Android
                                            .Replace("BW", " Łazienka damska")
                                            .Replace("BM", " Łazienka męska")
                                            .Replace("F", " Bufet")
-                                           .Replace("S", " Apteczka"));
+                                           .Replace("S", " Apteczka")
+                                           .Replace("CY", "Szatnia żółta")
+                                           .Replace("CG", "Szatnia zielona"));
                     roomsID.Add(item.ID);
                 }
             }
@@ -228,51 +232,6 @@ namespace NawigatorB34.Android
             }
         }
 
-        private void spinnerFinish_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
-        {
-            using (Spinner spinnerStart = FindViewById<Spinner>(Resource.Id.spinnerStart))
-            {
-                if (e.Position != 0 && spinnerStart.SelectedItemPosition != 0)
-                {
-                    using (Spinner roomID = FindViewById<Spinner>(Resource.Id.spinnerRoomID))
-                    {
-                        Room start = databaseHelper.FindRoomByID(int.Parse(roomID.GetItemAtPosition(e.Position).ToString()));
-                        Room finish = databaseHelper.FindRoomByID(int.Parse(roomID.GetItemAtPosition(e.Position).ToString()));
-                        using (Bitmap map = drawer.DrawPath(start, finish)[0] as Bitmap)
-                        {
-                            using (ImageView image = FindViewById<ImageView>(Resource.Id.imageView1))
-                            {
-                                image.SetImageResource(Color.Transparent);
-                                image.SetImageBitmap(map);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        private void spinnerStart_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
-        {
-            using (Spinner spinnerFinish = FindViewById<Spinner>(Resource.Id.spinnerFinish))
-            {
-                if (e.Position != 0 && spinnerFinish.SelectedItemPosition != 0)
-                {
-                    using (Spinner roomID = FindViewById<Spinner>(Resource.Id.spinnerRoomID))
-                    {
-                        Room start = databaseHelper.FindRoomByID(int.Parse(roomID.GetItemAtPosition(e.Position).ToString()));
-                        Room finish = databaseHelper.FindRoomByID(int.Parse(roomID.GetItemAtPosition(e.Position).ToString()));
-                        using (Bitmap map = drawer.DrawPath(start, finish)[0] as Bitmap)
-                        {
-                            using (ImageView image = FindViewById<ImageView>(Resource.Id.imageView1))
-                            {
-                                image.SetImageResource(Color.Transparent);
-                                image.SetImageBitmap(map);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
         private void floorSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             using (ImageView image = FindViewById<ImageView>(Resource.Id.imageView1))
@@ -281,26 +240,31 @@ namespace NawigatorB34.Android
                 {
                     case 1:
                         {
+                            image.Visibility = ViewStates.Visible;
                             image.SetImageResource(Resource.Drawable.floorM1);
                             break;
                         }
                     case 2:
                         {
+                            image.Visibility = ViewStates.Visible;
                             image.SetImageResource(Resource.Drawable.floor0);
                             break;
                         }
                     case 3:
                         {
+                            image.Visibility = ViewStates.Visible;
                             image.SetImageResource(Resource.Drawable.floor1);
                             break;
                         }
                     case 4:
                         {
+                            image.Visibility = ViewStates.Visible;
                             image.SetImageResource(Resource.Drawable.floor2);
                             break;
                         }
                     case 5:
                         {
+                            image.Visibility = ViewStates.Visible;
                             image.SetImageResource(Resource.Drawable.floor3);
                             break;
                         }
