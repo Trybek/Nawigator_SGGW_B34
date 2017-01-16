@@ -20,12 +20,10 @@ namespace NawigatorB34.Android
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            SetContentView(Resource.Layout.Main);
 
             databaseHelper = new SQLiteAndroid(Assets);
             drawer = new DrawerAndroid(ApplicationContext);
-
-            // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
 
             using (Spinner spinner = FindViewById<Spinner>(Resource.Id.spinnerFloor))
             {
@@ -72,29 +70,46 @@ namespace NawigatorB34.Android
             int fontSize;
             using (ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext))
             {
-                fontSize = prefs.GetInt("FontSize", 20);
+                fontSize = prefs.GetInt("FontSize", 16);
             }
 
-            using (TextView textViewTitle = FindViewById<TextView>(Resource.Id.textView5)) //jestem przy
+            using (LinearLayout layout = FindViewById<LinearLayout>(Resource.Id.linearLayout1))
             {
-                textViewTitle.SetTextSize(ComplexUnitType.Mm, fontSize);
+                for (int i = 0; i < layout.ChildCount; i++)
+                {
+                    var element = layout.GetChildAt(i);
+                    if (element is Button)
+                    {
+                        (element as Button).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                    else if (element is TextView)
+                    {
+                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                    else if (element is EditText)
+                    {
+                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                }
             }
-            using (TextView textViewFrom = FindViewById<TextView>(Resource.Id.textView3)) //jestem przy
+            using (RelativeLayout layout = FindViewById<RelativeLayout>(Resource.Id.relativeLayout1))
             {
-                textViewFrom.SetTextSize(ComplexUnitType.Mm, fontSize);
-            }
-            using (TextView textViewTo = FindViewById<TextView>(Resource.Id.textView4)) //chce isc do
-            {
-                textViewTo.SetTextSize(ComplexUnitType.Mm, fontSize);
-            }
-
-            using (Button settings = FindViewById<Button>(Resource.Id.buttonSettings)) //ustawienia
-            {
-                settings.SetTextSize(ComplexUnitType.Mm, fontSize);
-            }
-            using (Button notes = FindViewById<Button>(Resource.Id.buttonNotes)) //notatki
-            {
-                notes.SetTextSize(ComplexUnitType.Mm, fontSize);
+                for (int i = 0; i < layout.ChildCount; i++)
+                {
+                    var element = layout.GetChildAt(i);
+                    if (element is Button)
+                    {
+                        (element as Button).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                    else if (element is TextView)
+                    {
+                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                    else if (element is EditText)
+                    {
+                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                }
             }
         }
         private void MakeSpinners()

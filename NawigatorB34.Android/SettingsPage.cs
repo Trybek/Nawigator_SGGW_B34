@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Preferences;
+using Android.Util;
 
 namespace NawigatorB34.Android
 {
@@ -31,7 +32,7 @@ namespace NawigatorB34.Android
             {
                 showNotifications = prefs.GetBoolean("ShowNotifications", true);
                 removeOldNotes = prefs.GetBoolean("RemoveOldNotes", false);
-                fontSize = prefs.GetInt("FontSize", 20);
+                fontSize = prefs.GetInt("FontSize", 16);
                 timerNotifications = prefs.GetInt("TimerNotifications", 15);
                 readRoomsOnFloor = prefs.GetString("ReadRoomsOnFloor", "-1;0;2;3");
             }
@@ -86,7 +87,7 @@ namespace NawigatorB34.Android
             using (SeekBar seekBarTimerNotifications = FindViewById<SeekBar>(Resource.Id.seekBarTimer))
             {
                 seekBarTimerNotifications.Progress = timerNotifications;
-                seekBarTimerNotifications.StopTrackingTouch += SeekBarTimerNotifications_StopTrackingTouch; ;
+                seekBarTimerNotifications.StopTrackingTouch += SeekBarTimerNotifications_StopTrackingTouch;
             }
 
             using (Switch switchNotifications = FindViewById<Switch>(Resource.Id.switch1))
@@ -103,8 +104,34 @@ namespace NawigatorB34.Android
         }
 
         private void SetFontSize()
-        {//uruchamiane przy ustawianiu strony oraz po przesuniêciu suwaka FontSize
-
+        {
+            using (LinearLayout layout = FindViewById<LinearLayout>(Resource.Id.linearLayout1))
+            {
+                for (int i = 0; i < layout.ChildCount; i++)
+                {
+                    var element = layout.GetChildAt(i);
+                    if (element is Button)
+                    {
+                        (element as Button).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                    else if (element is TextView)
+                    {
+                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                    else if (element is EditText)
+                    {
+                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                    else if (element is CheckBox)
+                    {
+                        (element as CheckBox).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                    else if (element is Switch)
+                    {
+                        (element as Switch).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                }
+            }
         }
 
         private void CheckFloor_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
@@ -162,9 +189,11 @@ namespace NawigatorB34.Android
 
         private void SeekBarFontSize_StopTrackingTouch(object sender, SeekBar.StopTrackingTouchEventArgs e)
         {
-            using (SeekBar seekBarFontSize = FindViewById<SeekBar>(Resource.Id.seekBarFontSize))
+            fontSize = e.SeekBar.Progress;
+            if(fontSize < 10)
             {
-                fontSize = seekBarFontSize.Progress;
+                fontSize = 10;
+                e.SeekBar.Progress = 10;
             }
             using (ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext))
             {
@@ -179,7 +208,7 @@ namespace NawigatorB34.Android
 
         private void SeekBarTimerNotifications_StopTrackingTouch(object sender, SeekBar.StopTrackingTouchEventArgs e)
         {
-            timerNotifications = ((SeekBar)sender).Progress;
+            timerNotifications = e.SeekBar.Progress;
             using (ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext))
             {
                 using (ISharedPreferencesEditor editor = prefs.Edit())

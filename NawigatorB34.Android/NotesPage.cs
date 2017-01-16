@@ -8,6 +8,7 @@ using Android.Util;
 using Android.Widget;
 using NawigatorB34.Android.Models;
 using System.Globalization;
+using Android.Preferences;
 
 namespace NawigatorB34.Android
 {
@@ -77,7 +78,68 @@ namespace NawigatorB34.Android
 
         private void SetFontSize()
         {
-
+            int fontSize;
+            using (ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext))
+            {
+                fontSize = prefs.GetInt("FontSize", 16);
+            }
+            using (LinearLayout layout = FindViewById< LinearLayout>(Resource.Id.linearLayout1))
+            {
+                for (int i = 0; i < layout.ChildCount; i++)
+                {
+                    var element = layout.GetChildAt(i);
+                    if(element is Button)
+                    {
+                        (element as Button).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                    else if (element is TextView)
+                    {
+                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                    else if(element is EditText)
+                    {
+                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                }
+            }
+            using (TableRow tableRow = FindViewById<TableRow>(Resource.Id.tableRow3))
+            {
+                for (int i = 0; i < tableRow.ChildCount; i++)
+                {
+                    var element = tableRow.GetChildAt(i);
+                    if (element is Button)
+                    {
+                        (element as Button).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                    else if (element is TextView)
+                    {
+                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                    else if (element is EditText)
+                    {
+                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                }
+            }
+            using (TableRow tableRow = FindViewById<TableRow>(Resource.Id.tableRow7))
+            {
+                for (int i = 0; i < tableRow.ChildCount; i++)
+                {
+                    var element = tableRow.GetChildAt(i);
+                    if (element is Button)
+                    {
+                        (element as Button).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                    else if (element is TextView)
+                    {
+                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                    else if (element is EditText)
+                    {
+                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                    }
+                }
+            }
         }
 
         private void SpinnerRoom_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
@@ -90,6 +152,12 @@ namespace NawigatorB34.Android
 
         private void MakeList()
         {
+            int fontSize;
+            using (ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext))
+            {
+                fontSize = prefs.GetInt("FontSize", 16);
+            }
+
             using (var layout = Window.DecorView.FindViewById<LinearLayout>(Resource.Id.linearLayout1))
             {
                 layout.RemoveViewsInLayout(1, layout.ChildCount - 5);
@@ -98,12 +166,11 @@ namespace NawigatorB34.Android
                     using (TextView txt = new TextView(this))
                     {
                         txt.ContentDescription = note.ID.ToString(); ;
-                        txt.SetTextSize(ComplexUnitType.Mm, 16);
+                        txt.SetTextSize(ComplexUnitType.Mm, fontSize);
                         txt.SetText($"{note.TextOfNote}\nW dniu: {note.TimeOfNote/*.Insert(10, " o godzinie ")*/} w {note.RoomName}\n", TextView.BufferType.Normal);
                         txt.Click += NoteTextView_Click;
                         layout.AddView(txt, 1);
                     }
-                    SetContentView(layout);
                 }
             }
         }
@@ -128,7 +195,6 @@ namespace NawigatorB34.Android
                         databaseHelper.DeleteNote(int.Parse(idOfNote));
 
                         (sender as PopupMenu).Menu.RemoveItem(0);
-                        (sender as PopupMenu).Dispose();
 
                         MakeList();
                         break;
