@@ -59,6 +59,9 @@ namespace Nawigator_SGGW_B34
 
         private void MakeMainPage()
         {
+            image.Source = null;
+            image2.Source = null;
+
             foreach (var item in GridContent.Children)
             {
                 if (item is TextBlock)

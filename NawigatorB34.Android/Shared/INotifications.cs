@@ -10,9 +10,8 @@ namespace NawigatorB34.Android
         bool IsNotificationAllowed { get; }
         bool RemoveOldNotes { get; }
 
-        void AddNotification(Room room, DateTime time);
+        void AddNotification(Note note);
         void RemoveExpiredNotes(ref List<Note> listOfNotes);
-        void ShowMessage(Room room);//zbędne jest tylko do pokazania przykładowego powiadomienia
 
         List<Note> GetListOfNotes();
     }

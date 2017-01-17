@@ -44,7 +44,6 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" x:Name="ContentRoot" Margin="10,0">
-            <Button Name="b3" Click="b3_Click" Height="94" Content="Pokaż powiadomienie" Width="211" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Grid x:Name="GridAddNote" Visibility="Collapsed">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

@@ -9,6 +9,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Add" Label="Dodaj" Click="AppBarButton_Click"/>
+            <AppBarButton Icon="Undo" Label="Wróć" Click="ReturnBarButton_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <Grid x:Name="LayoutRoot">
 
@@ -26,7 +33,7 @@
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Text="Nawigator SGGW Budynek 34" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="Ustawienia" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <TextBlock Text="Ustawienia" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" />
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->

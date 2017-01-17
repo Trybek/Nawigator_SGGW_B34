@@ -68,6 +68,11 @@ namespace Nawigator_SGGW_B34
             }
         }
 
+        private void ReturnBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
+        }
+
         #region Default Methods or Variables
         public NavigationHelper NavigationHelper
         {

@@ -74,10 +74,10 @@ namespace Nawigator_SGGW_B34
                 ShowNotifications = true;
             }
 
-            //if (!CheckFileExists("NawigatorDB.db3").Result)
-            //{
-            //    CopyDatabase();
-            //}
+            if (!CheckFileExists("NawigatorDB.db3").Result)
+            {
+                CopyDatabase();
+            }
 
         }
 

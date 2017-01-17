@@ -55,7 +55,9 @@ namespace NawigatorB34.Android
                 }
             }
         }
-
+        public void AddNotification(Note note)
+        {//nie chce mi siê tego robiæ
+        }
         public void AddNotification(Room room, DateTime time)
         {
             if (IsNotificationAllowed)
@@ -121,36 +123,6 @@ namespace NawigatorB34.Android
                     }
                 }
                 listOfNotes = DatabaseHelper.ReadNotes();
-            }
-        }
-
-        public void ShowMessage(Room room)
-        {
-            if (IsNotificationAllowed)
-            {
-                string nameRoom = room.Name.Replace("A", "Aula ")
-                                           .Replace("BW", " £azienka damska").Replace("BM", " £azienka mêska")
-                                           .Replace("SDD", "Schody w dó³ od zielonej").Replace("SDU", "Schody w górê od zielonej")
-                                           .Replace("SUD", "Schody w dó³ od ¿ó³tej").Replace("SUU", "Schody w górê od ¿ó³tej");
-
-                Notification.Builder builder = new Notification.Builder(context)
-                       .SetContentTitle($"Zajêcia za { timerNotifications } min w sali { nameRoom}")
-                       .SetContentText("Chcesz zobaczyæ mapê?")
-                       .SetSmallIcon(Resource.Drawable.Icon);
-
-                // Build the notification:
-                Notification notification = builder.Build();
-
-                // Get the notification manager:
-                NotificationManager notificationManager = context.GetSystemService(Context.NotificationService) as NotificationManager;
-
-                // Publish the notification:
-                const int notificationId = 0;
-                notificationManager.Notify(notificationId, notification);
-            }
-            else
-            {
-
             }
         }
     }

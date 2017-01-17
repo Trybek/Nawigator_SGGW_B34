@@ -3,6 +3,7 @@ using Nawigator_SGGW_B34.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -131,10 +132,36 @@ namespace Nawigator_SGGW_B34
             comboBox1.Items.Clear();
             comboBoxEdit1.Items.Clear();
             List<Room> listOfRooms = databaseHelper.ReadRooms();
-            foreach (var item in listOfRooms)
+            string[] tab = App.ReadRoomsOnFloor.Split(';');
+            foreach (Room item in listOfRooms)
             {
-                comboBox1.Items.Add(new ComboBoxItem() { Name = item.ID.ToString(), Content = item.Name });
-                comboBoxEdit1.Items.Add(new ComboBoxItem() { Name = item.ID.ToString(), Content = item.Name });
+                if (tab.Contains(item.Floor.ToString()))
+                {
+                    comboBox1.Items.Add(new ComboBoxItem()
+                    {
+                        Name = item.ID.ToString(),
+                        Content = item.Name.Replace("A", "Aula ")
+                                           .Replace("BW", " Łazienka damska")
+                                           .Replace("BM", " Łazienka męska")
+                                           .Replace("F", " Bufet")
+                                           .Replace("S", " Apteczka")
+                                           .Replace("CY", "Szatnia żółta")
+                                           .Replace("CG", "Szatnia zielona"),
+                        FontSize = App.FontSize
+                    });
+                    comboBoxEdit1.Items.Add(new ComboBoxItem()
+                    {
+                        Name = item.ID.ToString(),
+                        Content = item.Name.Replace("A", "Aula ")
+                                               .Replace("BW", " Łazienka damska")
+                                               .Replace("BM", " Łazienka męska")
+                                               .Replace("F", " Bufet")
+                                               .Replace("S", " Apteczka")
+                                               .Replace("CY", "Szatnia żółta")
+                                               .Replace("CG", "Szatnia zielona"),
+                        FontSize = App.FontSize
+                    });
+                }
             }
 
             for (int i = ContentRoot.Children.Count - 1; i >= 0; i--)
@@ -148,6 +175,13 @@ namespace Nawigator_SGGW_B34
             List<Note> listOfNotes = notifications.GetListOfNotes();
             if (listOfNotes.Count == 0)
             {
+                TextBlock text = new TextBlock()
+                {
+                    FontSize = App.FontSize,
+                    Text = "Brak notatek",
+                    Name = "item" + 0
+                };
+                ContentRoot.Children.Insert(0, text);
                 return;
             }
 
@@ -156,7 +190,7 @@ namespace Nawigator_SGGW_B34
                 TextBlock text = new TextBlock()
                 {
                     FontSize = App.FontSize,
-                    Text = $"{note.TextOfNote}\nW dniu: {note.TimeOfNote.Insert(10, " o godzinie ")} w {note.RoomName}\n",
+                    Text = $"{note.TextOfNote}\nW dniu: {note.TimeOfNote.Insert(10, " o godzinie ")}\nMiejsce: {note.RoomName}\n",
                     Name = "item" + note.ID
                 };
                 text.Tapped += Text_Tapped;
@@ -180,17 +214,6 @@ namespace Nawigator_SGGW_B34
                 textBox.Text = string.Empty;
             }
         }
-        private void b3_Click(object sender, RoutedEventArgs e)
-        {
-            if (comboBox1.SelectedItem != null && string.IsNullOrEmpty((comboBox1.SelectedItem as ComboBoxItem).Name))
-            {
-                notifications.ShowMessage(databaseHelper.FindRoomByID(int.Parse((comboBox1.SelectedItem as ComboBoxItem).Name)));
-            }
-            else
-            {
-                notifications.ShowMessage(databaseHelper.FindRoomByID(1));
-            }
-        }
         private async void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
             if (comboBox1.SelectedIndex != -1)
@@ -205,21 +228,29 @@ namespace Nawigator_SGGW_B34
                 TextBlock text = new TextBlock()
                 {
                     FontSize = App.FontSize,
-                    Text = $"{note.TextOfNote}\nO godzinie:{note.TimeOfNote} w {note.RoomName}",
+                    Text = $"{note.TextOfNote}\nW dniu: {note.TimeOfNote.Insert(10, " o godzinie ")}\nMiejsce: {note.RoomName}\n",
                     Name = "item" + note.ID
                 };
                 text.Tapped += Text_Tapped;
+                if (ContentRoot.Children[0] is TextBlock)
+                {
+                    if ((ContentRoot.Children[0] as TextBlock).Name == "item0")
+                    {
+                        ContentRoot.Children.RemoveAt(0);
+                    }
+                }
                 ContentRoot.Children.Insert(0, text);
+
                 DateTime date = DateTime.ParseExact(note.TimeOfNote, @"dd-MM-yyyy HH\:mm", CultureInfo.InvariantCulture);
                 if (date >= DateTime.Now)
                 {
-                    notifications.AddNotification(databaseHelper.FindRoomByID(note.RoomID), date);
+                    notifications.AddNotification(note);
                 }
                 GridAddNote.Visibility = Visibility.Collapsed;
             }
             else
             {
-                MessageDialog message = new MessageDialog("Nie Wybrano sali");
+                MessageDialog message = new MessageDialog("Nie wybrano sali");
                 await message.ShowAsync();
             }
         }
@@ -284,5 +315,9 @@ namespace Nawigator_SGGW_B34
             popUp.IsOpen = false;
         }
 
+        private void ReturnBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
+        }
     }
 }

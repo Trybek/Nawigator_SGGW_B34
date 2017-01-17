@@ -101,8 +101,6 @@ namespace Nawigator_SGGW_B34
         {
             WriteableBitmap floorMap = start ? writeableBmpFloorStart : writeableBmpFloorFinish;
 
-            //schody do góry X 347 - rysuj do 1195
-            //schody na dół  X 291  - rysuj do 850
             switch ((int)which.X)
             {
                 case 35:
@@ -151,7 +149,7 @@ namespace Nawigator_SGGW_B34
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Right, start);
                         }
-                        floorMap.DrawLineAa((int)which.X, (int)which.Y, 850, (int)which.Y, Color.FromArgb(255, 0, 0, 0), 5);
+                        floorMap.DrawLineAa((int)which.X, (int)which.Y, 265, (int)which.Y, Color.FromArgb(255, 0, 0, 0), 5);
                         which.X = 265;
                         break;
                     }
@@ -161,7 +159,7 @@ namespace Nawigator_SGGW_B34
                         {
                             DrawArrow((int)which.X, (int)which.Y, EnumPosition.Left, start);
                         }
-                        floorMap.DrawLineAa((int)which.X, (int)which.Y, 1195, (int)which.Y, Color.FromArgb(255, 0, 0, 0), 5);
+                        floorMap.DrawLineAa((int)which.X, (int)which.Y, 375, (int)which.Y, Color.FromArgb(255, 0, 0, 0), 5);
                         which.X = 375;
                         break;
                     }
@@ -209,8 +207,6 @@ namespace Nawigator_SGGW_B34
                     break;
             }
 
-            //schody u góry  Y 390
-            //schody u dołu  Y 35
             switch ((int)which.Y)
             {
                 case 35:

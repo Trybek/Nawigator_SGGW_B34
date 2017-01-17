@@ -16,14 +16,14 @@
             IsSourceGrouped="True">
         </CollectionViewSource>
         <MenuFlyout x:Name="menu">
-            <MenuFlyoutItem Text="Edycja" Click="MenuFlyoutEdit_Click" FontSize="{ThemeResource TextStyleLargeFontSize}" />
-            <MenuFlyoutItem Text="Usuń" Click="MenuFlyoutDelete_Click" FontSize="{ThemeResource TextStyleLargeFontSize}" />
+            <MenuFlyoutItem Text="Edycja" Click="MenuFlyoutEdit_Click" />
+            <MenuFlyoutItem Text="Usuń" Click="MenuFlyoutDelete_Click" />
         </MenuFlyout>
     </Page.Resources>
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="Add" Label="Dodaj" Click="AppBarButton_Click"/>
+            <AppBarButton Icon="Undo" Label="Wróć" Click="ReturnBarButton_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
 
@@ -42,11 +42,10 @@
 
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Text="Nawigator SGGW Budynek 34" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="Notatki" Margin="0,10,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <TextBlock Text="Notatki" Margin="0,10,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" x:Name="ContentRoot" Margin="10,0" HorizontalAlignment="Left">
-            <Button Name="b3" Click="b3_Click" Height="94" Content="Pokaż powiadomienie" Width="211" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Grid x:Name="GridAddNote" Visibility="Collapsed">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -100,7 +99,7 @@
                 <TimePicker x:Name="timePickerEdit" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" ClockIdentifier="24HourClock"/>
                 <DatePicker x:Name="datePickerEdit" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1" Margin="5,0" />
                 <TextBox x:Name="textBoxEdit" Margin="5,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Grid.Column="1"/>
-                <Button x:Name="buttonEdit" Grid.Column="2" Grid.Row="2" Content="Zmień" Click="buttonEdit_Click" FontSize="{ThemeResource TextStyleLargeFontSize}" HorizontalAlignment="Center" />
+                <Button x:Name="buttonEdit" Grid.Column="2" Grid.Row="2" Content="Zmień" Click="buttonEdit_Click" HorizontalAlignment="Center" />
 
             </Grid>
         </Popup>
