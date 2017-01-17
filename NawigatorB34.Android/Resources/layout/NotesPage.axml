@@ -2,115 +2,112 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-  <LinearLayout
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:id="@+id/linearLayout1">
-    <TextView
-        android:text="Notatki"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="44.5dp"
-        android:id="@+id/textView1"
-        android:layout_marginTop="9.0dp"
-        android:layout_marginLeft="11.0dp" />
-    <Button
-        android:text="Pokaż powiadomienie"
-        android:layout_width="match_parent"
-        android:layout_height="56.0dp"
-        android:id="@+id/button1"
-        android:layout_marginLeft="9.5dp"
-        android:layout_marginRight="9.5dp"
-        android:layout_marginBottom="29.0dp" />
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerRoomID"
-        android:visibility="gone" />
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tableLayout1">
-      <TableRow
-          android:id="@+id/tableRow2">
-      </TableRow>
-      <TableRow
-          android:id="@+id/tableRow3">
+        android:layout_height="match_parent"
+        android:id="@+id/linearLayout1">
         <TextView
-            android:text="Opis i miejsce"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/textView2"
-            android:layout_column="0"
-            android:layout_marginRight="29.5dp"
-            android:layout_height="35.0dp"
-            android:layout_width="124.0dp"
+            android:text="Notatki"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="44.5dp"
+            android:id="@+id/textView1"
+            android:layout_marginTop="9.0dp"
+            android:layout_marginLeft="11.0dp" />
+        <Button
+            android:text="Pokaż powiadomienie"
+            android:layout_width="match_parent"
+            android:layout_height="56.0dp"
+            android:id="@+id/button1"
             android:layout_marginLeft="9.5dp"
-            android:layout_marginTop="4.5dp" />
-        <EditText
-            android:layout_column="1"
-            android:id="@+id/editTextOfNote"
-            android:layout_width="99.5dp"
-            android:layout_marginTop="3.5dp"
-            android:hint="Opis" />
+            android:layout_marginRight="9.5dp"
+            android:layout_marginBottom="29.0dp" />
         <Spinner
-            android:id="@+id/spinner1"
-            android:layout_column="2"
-            android:layout_width="84.5dp"
-            android:layout_height="33.5dp"
-            android:layout_marginBottom="2.5dp"
-            android:layout_marginLeft="13.5dp"
-            android:layout_marginTop="3.5dp" />
-      </TableRow>
-    </TableLayout>
-    <TableLayout
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tableLayout3">
-      <TableRow
-          android:id="@+id/tableRow7">
-        <TextView
-            android:text="Kiedy"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/textView3"
-            android:layout_column="0"
-            android:layout_width="113.5dp"
-            android:layout_marginLeft="9.5dp"
-            android:layout_marginTop="10.0dp" />
-        <EditText
-            android:inputType="time"
-            android:id="@+id/editTextTime"
-            android:layout_column="1"
-            android:layout_width="99.0dp"
-            android:layout_marginLeft="39.0dp"
-            android:layout_marginBottom="4.5dp"
-            android:layout_marginTop="9.0dp"
-            android:hint="godzina" />
-        <EditText
-            android:inputType="date"
-            android:id="@+id/editTextDate"
-            android:layout_column="2"
-            android:layout_width="80.0dp"
-            android:layout_marginLeft="19.0dp"
-            android:layout_marginBottom="2.5dp"
-            android:layout_marginTop="9.0dp"
-            android:hint="data" />
-      </TableRow>
-      <TableRow
-          android:id="@+id/tableRow8">
-      </TableRow>
-      <TableRow
-          android:id="@+id/tableRow9">
-      </TableRow>
-    </TableLayout>
-    <Button
-        android:text="DODAJ"
-        android:layout_width="297.0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/button2"
-        android:layout_marginRight="46.5dp"
-        android:layout_marginLeft="47.0dp" />
-  </LinearLayout>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerRoomID"
+            android:visibility="gone" />
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableLayout1">
+            <TableRow
+                android:id="@+id/tableRow2">
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRow3">
+                <TextView
+                    android:text="Opis i miejsce"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/textView2"
+                    android:layout_column="0"
+                    android:layout_marginRight="29.5dp"
+                    android:layout_height="35.0dp"
+                    android:layout_width="124.0dp"
+                    android:layout_marginLeft="9.5dp"
+                    android:layout_marginTop="4.5dp" />
+                <EditText
+                    android:layout_column="1"
+                    android:id="@+id/editTextOfNote"
+                    android:layout_width="99.5dp"
+                    android:layout_marginTop="3.5dp"
+                    android:hint="Opis" />
+                <Spinner
+                    android:id="@+id/spinner1"
+                    android:layout_column="2"
+                    android:layout_width="84.5dp"
+                    android:layout_height="33.5dp"
+                    android:layout_marginBottom="2.5dp"
+                    android:layout_marginLeft="13.5dp"
+                    android:layout_marginTop="3.5dp" />
+            </TableRow>
+        </TableLayout>
+        <TableLayout
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableLayout3">
+            <TableRow
+                android:id="@+id/tableRow7">
+                <TextView
+                    android:text="Kiedy"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/textView3"
+                    android:layout_column="0"
+                    android:layout_width="113.5dp"
+                    android:layout_marginLeft="9.5dp"
+                    android:layout_marginTop="10.0dp" />
+                <EditText
+                    android:inputType="time"
+                    android:id="@+id/editTextTime"
+                    android:layout_column="1"
+                    android:layout_width="99.0dp"
+                    android:layout_marginLeft="39.0dp"
+                    android:layout_marginBottom="4.5dp"
+                    android:layout_marginTop="9.0dp"
+                    android:hint="godzina" />
+                <EditText
+                    android:inputType="date"
+                    android:id="@+id/editTextDate"
+                    android:layout_column="2"
+                    android:layout_width="80.0dp"
+                    android:layout_marginLeft="19.0dp"
+                    android:layout_marginBottom="2.5dp"
+                    android:layout_marginTop="9.0dp"
+                    android:hint="data" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRow8">
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRow9">
+                <Button
+                    android:text="DODAJ"
+                    android:id="@+id/button2"
+                    android:layout_column="1" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
 </ScrollView>
