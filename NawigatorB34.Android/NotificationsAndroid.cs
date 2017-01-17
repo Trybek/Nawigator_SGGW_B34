@@ -56,26 +56,24 @@ namespace NawigatorB34.Android
             }
         }
         public void AddNotification(Note note)
-        {//nie chce mi siê tego robiæ
-        }
-        public void AddNotification(Room room, DateTime time)
         {
             if (IsNotificationAllowed)
             {
-                string nameRoom = room.Name.Replace("A", "Aula ")
-                                           .Replace("BW", " £azienka damska").Replace("BM", " £azienka mêska")
-                                           .Replace("SDD", "Schody w dó³ od zielonej").Replace("SDU", "Schody w górê od zielonej")
-                                           .Replace("SUD", "Schody w dó³ od ¿ó³tej").Replace("SUU", "Schody w górê od ¿ó³tej");
+                DateTime time = DateTime.ParseExact(note.TimeOfNote, @"dd-MM-yyyy HH\:mm", System.Globalization.CultureInfo.InvariantCulture);
+                string nameRoom = note.RoomName.Replace("A", "Aula ")
+                                               .Replace("BW", " £azienka damska").Replace("BM", " £azienka mêska")
+                                               .Replace("SDD", "Schody w dó³ od zielonej").Replace("SDU", "Schody w górê od zielonej")
+                                               .Replace("SUD", "Schody w dó³ od ¿ó³tej").Replace("SUU", "Schody w górê od ¿ó³tej");
 
                 Intent intent = new Intent(context, typeof(MainActivity));
-                intent.PutExtra("RoomId", room.ID);
+                intent.PutExtra("RoomId", note.RoomID);
                 const int pendingIntentId = 0;
                 PendingIntent pendingIntent = PendingIntent.GetActivity(context, pendingIntentId, intent, PendingIntentFlags.OneShot);
 
                 Notification.Builder builder = new Notification.Builder(context)
                         .SetAutoCancel(true)
                         .SetContentIntent(pendingIntent)
-                        .SetContentTitle($"Zajêcia za { timerNotifications } min w sali { nameRoom }")
+                        .SetContentTitle($"{note.TextOfNote} za { timerNotifications } min w {(nameRoom.Contains("Aula") ? "" : "sali")} { nameRoom }")
                         .SetContentText("Chcesz zobaczyæ mapê?")
                         .SetSmallIcon(Resource.Drawable.Icon)
                         .SetWhen((DateTime.Now - time).Ticks);

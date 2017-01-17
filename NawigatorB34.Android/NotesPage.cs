@@ -226,7 +226,7 @@ namespace NawigatorB34.Android
 
         private void Show_Click(object sender, EventArgs e)
         {
-            notifications.AddNotification(databaseHelper.FindRoomByID(1), DateTime.Now);
+            notifications.AddNotification(databaseHelper.FindNoteByID(1));
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
@@ -277,7 +277,7 @@ namespace NawigatorB34.Android
                     return;
                 }
 
-                notifications.AddNotification(databaseHelper.FindRoomByID(note.RoomID), DateTime.ParseExact(note.TimeOfNote, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture));
+                notifications.AddNotification(note);
                 databaseHelper.InsertNote(note);
 
                 using (var layout = Window.DecorView.FindViewById<LinearLayout>(Resource.Id.linearLayout1))
