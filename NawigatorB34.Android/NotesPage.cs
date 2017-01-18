@@ -90,15 +90,15 @@ namespace NawigatorB34.Android
                     var element = layout.GetChildAt(i);
                     if(element is Button)
                     {
-                        (element as Button).SetTextSize(ComplexUnitType.Mm, fontSize);
+                        (element as Button).SetTextSize(ComplexUnitType.Sp, fontSize);
                     }
                     else if (element is TextView)
                     {
-                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                        (element as TextView).SetTextSize(ComplexUnitType.Sp, fontSize);
                     }
                     else if(element is EditText)
                     {
-                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                        (element as TextView).SetTextSize(ComplexUnitType.Sp, fontSize);
                     }
                 }
             }
@@ -109,15 +109,15 @@ namespace NawigatorB34.Android
                     var element = tableRow.GetChildAt(i);
                     if (element is Button)
                     {
-                        (element as Button).SetTextSize(ComplexUnitType.Mm, fontSize);
+                        (element as Button).SetTextSize(ComplexUnitType.Sp, fontSize);
                     }
                     else if (element is TextView)
                     {
-                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                        (element as TextView).SetTextSize(ComplexUnitType.Sp, fontSize);
                     }
                     else if (element is EditText)
                     {
-                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                        (element as TextView).SetTextSize(ComplexUnitType.Sp, fontSize);
                     }
                 }
             }
@@ -128,15 +128,15 @@ namespace NawigatorB34.Android
                     var element = tableRow.GetChildAt(i);
                     if (element is Button)
                     {
-                        (element as Button).SetTextSize(ComplexUnitType.Mm, fontSize);
+                        (element as Button).SetTextSize(ComplexUnitType.Sp, fontSize);
                     }
                     else if (element is TextView)
                     {
-                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                        (element as TextView).SetTextSize(ComplexUnitType.Sp, fontSize);
                     }
                     else if (element is EditText)
                     {
-                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                        (element as TextView).SetTextSize(ComplexUnitType.Sp, fontSize);
                     }
                 }
             }
@@ -166,7 +166,7 @@ namespace NawigatorB34.Android
                     using (TextView txt = new TextView(this))
                     {
                         txt.ContentDescription = note.ID.ToString(); ;
-                        txt.SetTextSize(ComplexUnitType.Mm, fontSize);
+                        txt.SetTextSize(ComplexUnitType.Sp, fontSize);
                         txt.SetText($"{note.TextOfNote}\nW dniu: {note.TimeOfNote/*.Insert(10, " o godzinie ")*/} w {note.RoomName}\n", TextView.BufferType.Normal);
                         txt.Click += NoteTextView_Click;
                         layout.AddView(txt, 1);
@@ -285,7 +285,7 @@ namespace NawigatorB34.Android
                     using (TextView txt = new TextView(this))
                     {
                         txt.ContentDescription = note.ID.ToString(); ;
-                        txt.SetTextSize(ComplexUnitType.Mm, 16);
+                        txt.SetTextSize(ComplexUnitType.Sp, 16);
                         txt.SetText($"{note.TextOfNote}\nW dniu: {note.TimeOfNote/*.Insert(10, " o godzinie ")*/} w {note.RoomName}\n", TextView.BufferType.Normal);
                         txt.Click += NoteTextView_Click;
                         layout.AddView(txt, 1);

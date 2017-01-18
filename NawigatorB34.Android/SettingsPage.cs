@@ -112,23 +112,23 @@ namespace NawigatorB34.Android
                     var element = layout.GetChildAt(i);
                     if (element is Button)
                     {
-                        (element as Button).SetTextSize(ComplexUnitType.Mm, fontSize);
+                        (element as Button).SetTextSize(ComplexUnitType.Sp, fontSize);
                     }
                     else if (element is TextView)
                     {
-                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                        (element as TextView).SetTextSize(ComplexUnitType.Sp, fontSize);
                     }
                     else if (element is EditText)
                     {
-                        (element as TextView).SetTextSize(ComplexUnitType.Mm, fontSize);
+                        (element as TextView).SetTextSize(ComplexUnitType.Sp, fontSize);
                     }
                     else if (element is CheckBox)
                     {
-                        (element as CheckBox).SetTextSize(ComplexUnitType.Mm, fontSize);
+                        (element as CheckBox).SetTextSize(ComplexUnitType.Sp, fontSize);
                     }
                     else if (element is Switch)
                     {
-                        (element as Switch).SetTextSize(ComplexUnitType.Mm, fontSize);
+                        (element as Switch).SetTextSize(ComplexUnitType.Sp, fontSize);
                     }
                 }
             }
