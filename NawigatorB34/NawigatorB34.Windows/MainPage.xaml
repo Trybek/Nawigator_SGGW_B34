@@ -51,11 +51,13 @@
                 <ComboBox x:Name="comboBox2" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1" Margin="10,0" PlaceholderText="Wybierz sale" DropDownClosed="comboBoxRooms_DropDownClosed"/>
                 <ProgressRing x:Name="progressRing" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="3" Grid.ColumnSpan="4" Margin="0,15,0,0" Visibility="Collapsed" Width="100" Height="100"/>
 
-                <ScrollViewer x:Name="scrollViewer" ZoomMode="Enabled" MinZoomFactor="1.0" MaxZoomFactor="3.0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.ColumnSpan="4" Grid.Row="4">
+                <ScrollViewer x:Name="scrollViewer" ZoomMode="Enabled" MinZoomFactor="0.6" MaxZoomFactor="5.0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                              Grid.ColumnSpan="4" Grid.Row="4">
                     <Image x:Name="image" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                 </ScrollViewer>
                 <TextBlock x:Name="textBlock3" HorizontalAlignment="Center" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="4"/>
-                <ScrollViewer x:Name="scrollViewer2" ZoomMode="Enabled" MinZoomFactor="1.0" MaxZoomFactor="3.0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.ColumnSpan="4" Grid.Row="6">
+                <ScrollViewer x:Name="scrollViewer2" ZoomMode="Enabled" MinZoomFactor="0.6" MaxZoomFactor="5.0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                              Grid.ColumnSpan="4" Grid.Row="6">
                     <Image x:Name="image2" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                 </ScrollViewer>
 

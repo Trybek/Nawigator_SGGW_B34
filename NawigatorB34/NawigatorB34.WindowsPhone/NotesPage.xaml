@@ -43,33 +43,35 @@
             <TextBlock Text="Notatki" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" x:Name="ContentRoot" Margin="10,0">
-            <Grid x:Name="GridAddNote" Visibility="Collapsed">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Row="1" >
+            <StackPanel x:Name="ContentRoot" Margin="10,0">
+                <Grid x:Name="GridAddNote" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Opis i miejsce: " VerticalAlignment="Center"/>
-                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="Kiedy: " VerticalAlignment="Center" Grid.Row="1"/>
+                    <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Opis i miejsce: " VerticalAlignment="Center"/>
+                    <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="Kiedy: " VerticalAlignment="Center" Grid.Row="1"/>
 
-                <ComboBox x:Name="comboBox1" Grid.Column="2" PlaceholderText="Sala" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <ComboBox x:Name="comboBox1" Grid.Column="2" PlaceholderText="Sala" VerticalAlignment="Center" Margin="0,0,5,0"/>
 
-                <TimePicker x:Name="timePicker" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" ClockIdentifier="24HourClock"/>
-                <DatePicker x:Name="datePicker" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1" Margin="5,0" />
-                <Button x:Name="button" Content="Dodaj" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2" Click="ButtonAdd_Click"/>
-                <TextBox x:Name="textBox" Margin="5,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Grid.Column="1"/>
+                    <TimePicker x:Name="timePicker" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" ClockIdentifier="24HourClock"/>
+                    <DatePicker x:Name="datePicker" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1" Margin="5,0" />
+                    <Button x:Name="button" Content="Dodaj" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2" Click="ButtonAdd_Click"/>
+                    <TextBox x:Name="textBox" Margin="5,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Grid.Column="1"/>
 
 
-            </Grid>
-        </StackPanel>
-
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+        
         <Popup x:Name="popUp" IsOpen="False" IsLightDismissEnabled="True" Opened="popUp_Opened">
             <Popup.ChildTransitions>
                 <TransitionCollection>
@@ -88,7 +90,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
+
                 <TextBlock x:Name="textBlockEdit1" TextWrapping="Wrap" Text="Opis i miejsce: " VerticalAlignment="Center"/>
                 <TextBlock x:Name="textBlockEdit2" TextWrapping="Wrap" Text="Kiedy: " VerticalAlignment="Center" Grid.Row="1"/>
 

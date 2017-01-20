@@ -158,6 +158,10 @@ namespace Nawigator_SGGW_B34
             BitmapImage bm = new BitmapImage(new Uri($"ms-appx:///Floors/{(comboBox.SelectedItem as ComboBoxItem).Name.Remove(0, 5).Replace("11", "-1")}.png", UriKind.Absolute));
             image.Source = bm;
 
+            float scale = (float)(GridContent.ActualWidth / 640);
+            scrollViewer.ChangeView(scrollViewer.HorizontalOffset, scrollViewer.VerticalOffset, scale);
+            scrollViewer.Height = GridContent.Height;
+
             comboBox1.SelectedIndex = -1;
             comboBox2.SelectedIndex = -1;
 
@@ -180,9 +184,13 @@ namespace Nawigator_SGGW_B34
                 if (images.Length == 1)
                 {
                     scrollViewer.Visibility = Visibility.Visible;
+                    textBlock3.Visibility = Visibility.Collapsed;
                     scrollViewer2.Visibility = Visibility.Collapsed;
                     image.Source = images[0] as WriteableBitmap;
-                    textBlock3.Visibility = Visibility.Collapsed;
+
+                    float scale = (float)(GridContent.ActualWidth / 640);
+                    scrollViewer.ChangeView(scrollViewer.HorizontalOffset, scrollViewer.VerticalOffset, scale);
+                    scrollViewer.Height = GridContent.Height;
                 }
                 else
                 {
@@ -190,6 +198,12 @@ namespace Nawigator_SGGW_B34
                     scrollViewer2.Visibility = Visibility.Visible;
                     image.Source = images[0] as WriteableBitmap;
                     image2.Source = images[1] as WriteableBitmap;
+
+
+                    float scale = (float)(GridContent.ActualWidth / 640);
+                    scrollViewer.ChangeView(scrollViewer.HorizontalOffset, scrollViewer.VerticalOffset, scale);
+                    scrollViewer2.ChangeView(scrollViewer2.HorizontalOffset, scrollViewer2.VerticalOffset, scale);
+                    scrollViewer.Height = 260;
 
                     int floorDifference = roomStart.Floor - roomFinish.Floor;
                     if (floorDifference == -1)

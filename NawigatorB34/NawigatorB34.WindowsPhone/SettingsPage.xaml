@@ -21,52 +21,52 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Text="Nawigator SGGW Budynek 34" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
             <TextBlock Text="Ustawienia" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
         </StackPanel>
 
-        <!--TODO: Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Row="1">
+            <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Rozmiar czcionki: " VerticalAlignment="Center" Grid.Row="4"/>
-            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Czas przypomnienia: " VerticalAlignment="Center" Grid.Row="5"/>
-            <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="RC" VerticalAlignment="Center" Grid.Column="3" Grid.Row="4"/>
-            <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" TextWrapping="Wrap" Text="CP" VerticalAlignment="Center" Grid.Row="5" Grid.Column="3"/>
-            <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Pokazuj piętra:" VerticalAlignment="Center"/>
+                <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Rozmiar czcionki: " VerticalAlignment="Center" Grid.Row="4"/>
+                <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Czas przypomnienia: " VerticalAlignment="Center" Grid.Row="5"/>
+                <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="RC" VerticalAlignment="Center" Grid.Column="3" Grid.Row="4"/>
+                <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" TextWrapping="Wrap" Text="CP" VerticalAlignment="Center" Grid.Row="5" Grid.Column="3"/>
+                <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Pokazuj piętra:" VerticalAlignment="Center"/>
 
-            <Slider x:Name="sliderFontSize" VerticalAlignment="Center" Grid.Column="1" Minimum="16" Maximum="40" ValueChanged="sliderFontSize_ValueChanged" Grid.Row="4"/>
-            <Slider x:Name="sliderTimerNotifications" VerticalAlignment="Center" Grid.Column="1" Grid.Row="5" Maximum="60" ValueChanged="sliderTimerNotifications_ValueChanged"/>
+                <Slider x:Name="sliderFontSize" VerticalAlignment="Center" Grid.Column="1" Minimum="16" Maximum="40" ValueChanged="sliderFontSize_ValueChanged" Grid.Row="4"/>
+                <Slider x:Name="sliderTimerNotifications" VerticalAlignment="Center" Grid.Column="1" Grid.Row="5" Maximum="60" ValueChanged="sliderTimerNotifications_ValueChanged"/>
 
-            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="0" DropDownClosed="comboBox_DropDownClosed" PointerEntered="comboBox_PointerEntered" SelectionChanged="comboBox_SelectionChanged">
-                <Button Content="Zaznacz wszystkie piętra" Click="buttonSelectAll_Click"/>
-                <Button Content="Odznacz wszystkie piętra" Click="buttonUnselectAll_Click"/>
-                <CheckBox Content="Przyziemie" Name="checkBox11"/>
-                <CheckBox Content="Parter" Name="checkBox0"/>
-                <CheckBox Content="1 piętro" Name="checkBox1"/>
-                <CheckBox Content="2 piętro" Name="checkBox2"/>
-                <CheckBox Content="3 piętro" Name="checkBox3"/>
-            </ComboBox>
+                <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="0" DropDownClosed="comboBox_DropDownClosed" PointerEntered="comboBox_PointerEntered" SelectionChanged="comboBox_SelectionChanged">
+                    <Button Content="Zaznacz wszystkie piętra" Click="buttonSelectAll_Click"/>
+                    <Button Content="Odznacz wszystkie piętra" Click="buttonUnselectAll_Click"/>
+                    <CheckBox Content="Przyziemie" Name="checkBox11"/>
+                    <CheckBox Content="Parter" Name="checkBox0"/>
+                    <CheckBox Content="1 piętro" Name="checkBox1"/>
+                    <CheckBox Content="2 piętro" Name="checkBox2"/>
+                    <CheckBox Content="3 piętro" Name="checkBox3"/>
+                </ComboBox>
 
-            <ToggleSwitch x:Name="toggleSwitch" Grid.ColumnSpan="2" Header="Powiadomienia" VerticalAlignment="Top" OffContent="Wyłączone" OnContent="Włączone" FontSize="12" Toggled="toggleSwitch_Toggled" Grid.Row="1"/>
-            <ToggleSwitch x:Name="toggleSwitch1" Grid.ColumnSpan="2" Header="Stare notatki" Grid.Row="2" VerticalAlignment="Top" OnContent="Usuń" OffContent="Zostaw" Toggled="toggleSwitch1_Toggled"/>
+                <ToggleSwitch x:Name="toggleSwitch" Grid.ColumnSpan="2" Header="Powiadomienia" VerticalAlignment="Top" OffContent="Wyłączone" OnContent="Włączone" FontSize="12" Toggled="toggleSwitch_Toggled" Grid.Row="1"/>
+                <ToggleSwitch x:Name="toggleSwitch1" Grid.ColumnSpan="2" Header="Stare notatki" Grid.Row="2" VerticalAlignment="Top" OnContent="Usuń" OffContent="Zostaw" Toggled="toggleSwitch1_Toggled"/>
 
-        </Grid>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

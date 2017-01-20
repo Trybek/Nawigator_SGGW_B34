@@ -30,9 +30,9 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto" MaxHeight="500"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto" MaxHeight="500"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -49,12 +49,14 @@
                 <ComboBox x:Name="comboBox2" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" Margin="10,0" PlaceholderText="Wybierz sale" DropDownClosed="comboBoxRooms_DropDownClosed"/>
                 <ProgressRing x:Name="progressRing" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,15,0,0" Visibility="Collapsed"/>
 
-                <ScrollViewer x:Name="scrollViewer" ZoomMode="Enabled" MinZoomFactor="0.65" MaxZoomFactor="3.0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.ColumnSpan="4" Grid.Row="4" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                    <Image x:Name="image" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                <ScrollViewer x:Name="scrollViewer" ZoomMode="Enabled" MinZoomFactor="0.6" MaxZoomFactor="3.0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                              Grid.ColumnSpan="4" Grid.Row="4" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" VerticalAlignment="Top">
+                    <Image x:Name="image" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top"/>
                 </ScrollViewer>
                 <TextBlock x:Name="textBlock3" HorizontalAlignment="Center" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="4"/>
-                <ScrollViewer x:Name="scrollViewer2" ZoomMode="Enabled" MinZoomFactor="0.65" MaxZoomFactor="3.0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.ColumnSpan="4" Grid.Row="6" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                    <Image x:Name="image2" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                <ScrollViewer x:Name="scrollViewer2" ZoomMode="Enabled" MinZoomFactor="0.6" MaxZoomFactor="3.0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                              Grid.ColumnSpan="4" Grid.Row="6" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" VerticalAlignment="Top">
+                    <Image x:Name="image2" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top"/>
                 </ScrollViewer>
 
             </Grid>
