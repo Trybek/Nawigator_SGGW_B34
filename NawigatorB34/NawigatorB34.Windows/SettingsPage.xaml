@@ -12,7 +12,6 @@
     
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="Add" Label="Dodaj" Click="AppBarButton_Click"/>
             <AppBarButton Icon="Undo" Label="Wróć" Click="ReturnBarButton_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
